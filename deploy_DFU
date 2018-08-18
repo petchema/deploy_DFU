@@ -1,0 +1,68 @@
+#!/bin/bash
+set -e
+
+SOURCEDIR="$HOME/Téléchargements/daggerfall unity"
+TARGETDIR="$HOME/bin/daggerfall_unity"
+[ -n "$1" ] && TARGETDIR="$1"
+
+[ -d "$TARGETDIR" ] && rm -rf "$TARGETDIR"
+mkdir "$TARGETDIR"
+
+# Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
+unzip "$SOURCEDIR"/interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip -d "$TARGETDIR"
+
+# Mods https://forums.dfworkshop.net/viewforum.php?f=27
+
+# -- Cosmetic
+
+# Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
+unrar x "$SOURCEDIR"/Textures_3.0.rar "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/
+
+# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
+unzip -j "$SOURCEDIR"/EnhancedSky_2.1.0.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/enhanced sky.dfmod"
+
+# Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
+unzip -j "$SOURCEDIR"/DistantTerrain_2.4.1.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/distant terrain.dfmod"
+
+# Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
+unzip -j "$SOURCEDIR/Mountain And Hills 1.01.zip" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/mountains and hills.dfmod"
+
+# Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
+7z e "$SOURCEDIR"/RealGrass_2.2.7z RealGrass_2.2/Mod/Linux/realgrass.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+
+# Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
+7z e "$SOURCEDIR"/VibrantWind_v0.5_.7z VibrantWind_v0.5_/Linux/vibrantwind.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+
+# Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
+unzip -j "$SOURCEDIR"/RealtimeReflections_2.2.0.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/realtime reflections.dfmod" 
+unzip "$SOURCEDIR"/RealtimeReflections_2.2.0.zip -d /tmp RealtimeReflections_textures.zip
+unzip /tmp/RealtimeReflections_textures.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures
+
+# Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+unrar x -y "$SOURCEDIR"/VIO-V2.rar "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/
+
+# Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
+7z e "$SOURCEDIR"/PostProcessing_0.3.1a_.7z PostProcessing_0.3.1a_/Linux/postprocessing.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+
+# Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
+unzip -j "$SOURCEDIR/Convenient Clock 1.02.zip" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/convenient clock.dfmod" 
+
+# Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
+7z x "$SOURCEDIR"/LoadingScreen_2.2_.7z -o/tmp LoadingScreen_2.2_/StreamingAssets/Mods/LoadingScreen
+rm -rf "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen
+mv /tmp/LoadingScreen_2.2_/StreamingAssets/Mods/LoadingScreen "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+7z e "$SOURCEDIR"/LoadingScreen_2.2_.7z -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/ LoadingScreen_2.2_/OS-specific/Linux/loadingscreen.dfmod
+unrar x -y "$SOURCEDIR"/OblivionStyledLoadScreensV2.rar "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/Images/
+
+# -- Gameplay
+
+# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
+unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"y/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
+unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"y/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
+
+# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+unzip -o "$SOURCEDIR"/Quest_Pack_1_Guild.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+unzip -o "$SOURCEDIR"/Quest_Pack_1_NonGuild.1.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+unzip -o "$SOURCEDIR/Quest Pack 1 Perpetuals.zip" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
+
+exit 0
