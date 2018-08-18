@@ -35,7 +35,7 @@ unzip -j "$SOURCEDIR/Mountain And Hills 1.01.zip" -d "$TARGETDIR"/DaggerfallUnit
 
 # Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
 unzip -j "$SOURCEDIR"/RealtimeReflections_2.2.0.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/realtime reflections.dfmod" 
-unzip "$SOURCEDIR"/RealtimeReflections_2.2.0.zip -d /tmp RealtimeReflections_textures.zip
+unzip -o "$SOURCEDIR"/RealtimeReflections_2.2.0.zip -d /tmp RealtimeReflections_textures.zip
 unzip /tmp/RealtimeReflections_textures.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures
 
 # Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
@@ -57,8 +57,8 @@ unrar x -y "$SOURCEDIR"/OblivionStyledLoadScreensV2.rar "$TARGETDIR"/DaggerfallU
 # -- Gameplay
 
 # Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"y/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
-unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"y/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
+unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
+unrar x "$SOURCEDIR"/WarmAshesV1.1.rar -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 unzip -o "$SOURCEDIR"/Quest_Pack_1_Guild.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
