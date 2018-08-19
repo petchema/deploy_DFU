@@ -189,7 +189,7 @@ if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ StandaloneLinux/archaeologists.dfmod
 fi
 
-if [ "$USE_HACKS" ]; then
+if [ "$USE_HACKS" = "1" ]; then
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
     if [ "$ARC_CONVENIENTCLOCK" ]; then
 	# Keep original compass
