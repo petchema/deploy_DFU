@@ -15,24 +15,14 @@ usage() {
     exit 1
 }
 
-mypath=$(dirname "$0")
-mypath=$(cd "$mypath" && pwd)
-[ -z "$mypath" ] && fatal "can't find my own directory"
-
 [[ "$1" = "-h" || "$1" = "--help" ]] && usage
 
-check_available() {
-    command -v "$1" > /dev/null 2>&1 || fatal "\`$1' command not found"
-}
-
-# Use 7z for everything?
-check_available unzip
-check_available unrar
-check_available 7z
+owndir=$(dirname "$0")
+owndir=$(cd "$owndir" && pwd)
+[ -z "$owndir" ] && fatal "can't find my own directory"
 
 # Set defaults
-
-SOURCEDIR="$mypath"
+SOURCEDIR="$owndir"
 
 TARGETDIR="$HOME/bin/daggerfall_unity"
 [ -n "$1" ] && TARGETDIR="$1"
@@ -83,6 +73,16 @@ ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 # --------------------------------------------------------------------
 
 # preflight checks
+
+check_available() {
+    command -v "$1" > /dev/null 2>&1 || fatal "\`$1' command not found"
+}
+
+# Use 7z for everything?
+check_available unzip
+check_available unrar
+check_available 7z
+
 for archive in ${!ARC_*}; do
     if [ "${!archive}" ]; then
 	echo "Testing \`${!archive}' presence..."
