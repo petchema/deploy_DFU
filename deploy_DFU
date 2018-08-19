@@ -73,6 +73,9 @@ ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.2.zip
 
+# Allow workarounds for known issues between mods
+USE_HACKS=1
+
 # --------------------------------------------------------------------
 
 # preflight checks
@@ -182,10 +185,14 @@ if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/ StandaloneLinux/archaeologists.dfmod
 fi
 
-# Hack https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
-if [ "$ARC_CONVENIENTCLOCK" ]; then
-    # Keep original compass
-    rm "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml} || true
+if [ "$USE_HACKS" ]; then
+    # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
+    if [ "$ARC_CONVENIENTCLOCK" ]; then
+	# Keep original compass
+	for compassfile in "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
+	    [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
+	done
+    fi
 fi
 
 echo "Installed successfully under \`$TARGETDIR'"
