@@ -28,10 +28,67 @@ check_available unzip
 check_available unrar
 check_available 7z
 
+# Set defaults
+
 SOURCEDIR="$mypath"
 
 TARGETDIR="$HOME/bin/daggerfall_unity"
 [ -n "$1" ] && TARGETDIR="$1"
+
+# --------------------------------------------------------------------
+
+# By default this script will look for archives in its directory; Feel free to override here
+#SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
+
+# Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
+ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip
+
+# Eye candy
+
+# Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
+ARC_REMASTER30=Textures_3.0.rar
+# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
+ARC_ENHANCEDSKY=EnhancedSky_2.1.0.zip
+# Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
+ARC_DISTANTTERRAIN=DistantTerrain_2.4.1.zip
+# Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
+ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
+# Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
+ARC_REALGRASS=RealGrass_2.2.7z
+# Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
+ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
+# Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
+ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
+# Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+ARC_VILLAGERIMMERSION=VIO-V2.rar
+# Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
+ARC_POSTPROCESSING=PostProcessing_0.3.1a_.7z
+# Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
+ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
+# Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
+ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
+ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
+
+# Gameplay
+
+# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
+ARC_WARMASHES=WarmAshesV1.1.rar
+# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
+ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
+ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
+
+# --------------------------------------------------------------------
+
+# preflight checks
+for archive in ${!ARC_*}; do
+    if [ "${!archive}" ]; then
+	echo "Testing \`${!archive}' presence..."
+	[ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
+    fi
+done
+
+# -- Let's go
 
 SIGNATUREFILE=.deploy_DFU
 if [ -d "$TARGETDIR" ]; then
@@ -39,126 +96,81 @@ if [ -d "$TARGETDIR" ]; then
     rm -rf "$TARGETDIR"
 fi
 mkdir -p "$TARGETDIR"
-touch "$TARGETDIR/$SIGNATUREFILE"
+echo "Created by $self" > "$TARGETDIR/$SIGNATUREFILE"
 
-# --------------------------------------------------------------------
-
-# By default this script will look for archives in its directory; Feel free to override
-#SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
-
-# Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
-BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip
-
-# Eye candy
-
-# Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
-REMASTER30=Textures_3.0.rar
-# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
-ENHANCEDSKY=EnhancedSky_2.1.0.zip
-# Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
-DISTANTTERRAIN=DistantTerrain_2.4.1.zip
-# Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
-MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
-# Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
-REALGRASS=RealGrass_2.2.7z
-# Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
-VIBRANTWIND=VibrantWind_v0.5_.7z
-# Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
-REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
-# Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-VILLAGERIMMERSION=VIO-V2.rar
-# Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
-POSTPROCESSING=PostProcessing_0.3.1a_.7z
-# Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
-CONVENIENTCLOCK="Convenient Clock 1.02.zip"
-# Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
-LOADINGSCREEN=LoadingScreen_2.2_.7z
-LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
-
-# Gameplay
-
-# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-WARMASHES=WarmAshesV1.1.rar
-# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
-QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
-QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
-
-# --------------------------------------------------------------------
-
-unzip "$SOURCEDIR/$BASEGAME" -d "$TARGETDIR"
+unzip "$SOURCEDIR/$ARC_BASEGAME" -d "$TARGETDIR"
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
 # -- Eye candy
 
-if [ "$REMASTER30" ]; then
-    unrar x "$SOURCEDIR/$REMASTER30" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/
+if [ "$ARC_REMASTER30" ]; then
+    unrar x "$SOURCEDIR/$ARC_REMASTER30" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/
 fi
 
-if [ "$ENHANCEDSKY" ]; then
-    unzip -j "$SOURCEDIR/$ENHANCEDSKY" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/enhanced sky.dfmod"
+if [ "$ARC_ENHANCEDSKY" ]; then
+    unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/enhanced sky.dfmod"
 fi
 
-if [ "$DISTANTTERRAIN" ]; then
-    unzip -j "$SOURCEDIR/$DISTANTTERRAIN" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/distant terrain.dfmod"
+if [ "$ARC_DISTANTTERRAIN" ]; then
+    unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/distant terrain.dfmod"
 fi
 
-if [ "$MOUNTAINSHILLS" ]; then
-    unzip -j "$SOURCEDIR/$MOUNTAINSHILLS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/mountains and hills.dfmod"
+if [ "$ARC_MOUNTAINSHILLS" ]; then
+    unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/mountains and hills.dfmod"
 fi
 
-if [ "$REALGRASS" ]; then
-    7z e "$SOURCEDIR/$REALGRASS" "${REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+if [ "$ARC_REALGRASS" ]; then
+    7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
 fi
 
-if [ "$VIBRANTWIND" ]; then
-    7z e "$SOURCEDIR/$VIBRANTWIND" "${VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+if [ "$ARC_VIBRANTWIND" ]; then
+    7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
 fi
 
-if [ "$REALTIMEREFLECTIONS" ]; then
-    unzip -j "$SOURCEDIR/$REALTIMEREFLECTIONS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/realtime reflections.dfmod" 
-    unzip -o "$SOURCEDIR/$REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
+if [ "$ARC_REALTIMEREFLECTIONS" ]; then
+    unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/realtime reflections.dfmod" 
+    unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
     unzip /tmp/RealtimeReflections_textures.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures
 fi
 
-if [ "$VILLAGERIMMERSION" ]; then
-    unrar x -y "$SOURCEDIR/$VILLAGERIMMERSION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/
+if [ "$ARC_VILLAGERIMMERSION" ]; then
+    unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/
 fi
 
-if [ "$POSTPROCESSING" ]; then
-    7z e "$SOURCEDIR/$POSTPROCESSING" "${POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+if [ "$ARC_POSTPROCESSING" ]; then
+    7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
 fi
 
-if [ "$CONVENIENTCLOCK" ]; then
-    unzip -j "$SOURCEDIR/$CONVENIENTCLOCK" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/convenient clock.dfmod"
+if [ "$ARC_CONVENIENTCLOCK" ]; then
+    unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/convenient clock.dfmod"
 fi
 
-if [ "$LOADINGSCREEN" ]; then
-    7z x "$SOURCEDIR/$LOADINGSCREEN" -o/tmp "${LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
-    mv /tmp/"${LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
-    7z e "$SOURCEDIR/$LOADINGSCREEN" -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/ "${LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
+if [ "$ARC_LOADINGSCREEN" ]; then
+    7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
+    mv /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+    7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
 
-    if [ "$LOADINGSCREENOBLIVION" ]; then
-	unrar x -y "$SOURCEDIR/$LOADINGSCREENOBLIVION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/Images/
+    if [ "$ARC_LOADINGSCREENOBLIVION" ]; then
+	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/Images/
     fi
 fi
 
 # -- Gameplay
 
-if [ "$WARMASHES" ]; then
-    unrar x "$SOURCEDIR/$WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
-    unrar x "$SOURCEDIR/$WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
+if [ "$ARC_WARMASHES" ]; then
+    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
+    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
 fi
 
-if [ "$QUESTPACK1GUILD" ]; then
-    unzip -o "$SOURCEDIR/$QUESTPACK1GUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+if [ "$ARC_QUESTPACK1GUILD" ]; then
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
 fi
-if [ "$QUESTPACK1NONGUILD" ]; then
-    unzip -o "$SOURCEDIR/$QUESTPACK1NONGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+if [ "$ARC_QUESTPACK1NONGUILD" ]; then
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
 fi
-if [ "$QUESTPACK1PERPETUALS" ]; then
-    unzip -o "$SOURCEDIR/$QUESTPACK1PERPETUALS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
+if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
 fi
 
 echo "Installed successfully under \`$TARGETDIR'"
