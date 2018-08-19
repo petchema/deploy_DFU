@@ -33,8 +33,12 @@ TARGETDIR="$1"
 # By default this script will look for archives in its directory; Feel free to override here
 #SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
 
+
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
 ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip
+
+
+# Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
 # Eye candy
 
@@ -78,7 +82,7 @@ USE_HACKS=1
 
 # --------------------------------------------------------------------
 
-# preflight checks
+# -- preflight checks
 
 check_available() {
     command -v "$1" > /dev/null 2>&1 || fatal "\`$1' command not found"
@@ -107,89 +111,88 @@ mkdir -p "$TARGETDIR"
 echo "Created by $self $version" > "$TARGETDIR/$SIGNATUREFILE"
 
 unzip "$SOURCEDIR/$ARC_BASEGAME" -d "$TARGETDIR"
-
-# Mods https://forums.dfworkshop.net/viewforum.php?f=27
+assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 # -- Eye candy
 
 if [ "$ARC_REMASTER30" ]; then
-    unrar x "$SOURCEDIR/$ARC_REMASTER30" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/
+    unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
 fi
 
 if [ "$ARC_ENHANCEDSKY" ]; then
-    unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/enhanced sky.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux/enhanced sky.dfmod"
 fi
 
 if [ "$ARC_DISTANTTERRAIN" ]; then
-    unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/distant terrain.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux/distant terrain.dfmod"
 fi
 
 if [ "$ARC_MOUNTAINSHILLS" ]; then
-    unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/mountains and hills.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "StandaloneLinux/mountains and hills.dfmod"
 fi
 
 if [ "$ARC_REALGRASS" ]; then
-    7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+    7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$assets"/Mods/
 fi
 
 if [ "$ARC_VIBRANTWIND" ]; then
-    7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+    7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
 fi
 
 if [ "$ARC_REALTIMEREFLECTIONS" ]; then
-    unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/realtime reflections.dfmod" 
+    unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
     unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
-    unzip /tmp/RealtimeReflections_textures.zip -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures
+    unzip /tmp/RealtimeReflections_textures.zip -d "$assets"/Textures
 fi
 
 if [ "$ARC_VILLAGERIMMERSION" ]; then
-    unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/
+    unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Textures/
 fi
 
 if [ "$ARC_POSTPROCESSING" ]; then
-    7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
+    7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$assets"/Mods/
 fi
 
 if [ "$ARC_CONVENIENTCLOCK" ]; then
-    unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods "StandaloneLinux/convenient clock.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
 fi
 
 if [ "$ARC_LOADINGSCREEN" ]; then
     7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
-    mv /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/
-    7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
+    mv /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
+    7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
 
     if [ "$ARC_LOADINGSCREENOBLIVION" ]; then
-	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/LoadingScreen/Images/
+	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
     fi
 fi
 
 # -- Gameplay
 
 if [ "$ARC_WARMASHES" ]; then
-    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
-    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
+    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
+    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/QuestPacks/ WAQ00.txt
 fi
 
 if [ "$ARC_QUESTPACK1GUILD" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
 fi
 if [ "$ARC_QUESTPACK1NONGUILD" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
 fi
 if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
 fi
 
 if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
-    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/ StandaloneLinux/archaeologists.dfmod
+    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ StandaloneLinux/archaeologists.dfmod
 fi
 
 if [ "$USE_HACKS" ]; then
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
     if [ "$ARC_CONVENIENTCLOCK" ]; then
 	# Keep original compass
-	for compassfile in "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
+	for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
 	    [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
 	done
     fi
