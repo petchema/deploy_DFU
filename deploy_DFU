@@ -1,4 +1,5 @@
 #!/bin/bash
+# Deploy Dagggerfall Unity and mods
 
 # Stop if anything goes wrong
 set -e
