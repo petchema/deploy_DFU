@@ -70,6 +70,8 @@ ARC_WARMASHES=WarmAshesV1.1.rar
 ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
 ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
 ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
+# Archeologists guild
+ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.2.zip
 
 # --------------------------------------------------------------------
 
@@ -174,6 +176,10 @@ if [ "$ARC_QUESTPACK1NONGUILD" ]; then
 fi
 if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
+fi
+
+if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
+    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/ StandaloneLinux/archaeologists.dfmod
 fi
 
 echo "Installed successfully under \`$TARGETDIR'"
