@@ -37,7 +37,9 @@ LOADINGSCREEN=LoadingScreen_2.2_.7z
 LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
 # Gameplay
+# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 WARMASHES=WarmAshesV1.1.rar
+# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
 QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
 QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
@@ -102,13 +104,11 @@ fi
 
 # -- Gameplay
 
-# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 if [ "$WARMASHES" ]; then
     unrar x "$SOURCEDIR/$WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
     unrar x "$SOURCEDIR/$WARMASHES" -o "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks/ WAQ00.txt
 fi
 
-# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 if [ "$QUESTPACK1GUILD" ]; then
     unzip -o "$SOURCEDIR/$QUESTPACK1GUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks # Should only unpack JH subdir & contents, oh well
 fi
