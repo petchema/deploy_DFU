@@ -1,17 +1,56 @@
 #!/bin/bash
+
+# Stop if anything goes wrong
 set -e
 
-SOURCEDIR="$HOME/Téléchargements/daggerfall unity"
+self=$(basename "$0")
+
+fatal() {
+    echo "$self: $1" 1>&2
+    exit 1
+}
+
+usage() {
+    echo "Usage: $self [install directory]" 1>&2
+    exit 1
+}
+
+mypath=$(dirname "$0")
+mypath=$(cd "$mypath" && pwd)
+[ -z "$mypath" ] && fatal "can't find my own directory"
+
+check_available() {
+    command -v "$1" > /dev/null 2>&1 || fatal "\`$1' command not found"
+}
+
+# Use 7z for everything?
+check_available unzip
+check_available unrar
+check_available 7z
+
+SOURCEDIR="$mypath"
+
 TARGETDIR="$HOME/bin/daggerfall_unity"
 [ -n "$1" ] && TARGETDIR="$1"
 
-[ -d "$TARGETDIR" ] && rm -rf "$TARGETDIR"
-mkdir "$TARGETDIR"
+SIGNATUREFILE=.deploy_DFU
+if [ -d "$TARGETDIR" ]; then
+    [ -e "$TARGETDIR/$SIGNATUREFILE" ] || fatal "not replacing \`$TARGETDIR' we didn't create"
+    rm -rf "$TARGETDIR"
+fi
+mkdir -p "$TARGETDIR"
+touch "$TARGETDIR/$SIGNATUREFILE"
+
+# --------------------------------------------------------------------
+
+# By default this script will look for archives in its directory; Feel free to override
+#SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
 BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip
 
-# Cosmetic
+# Eye candy
+
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
 REMASTER30=Textures_3.0.rar
 # Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
@@ -19,7 +58,7 @@ ENHANCEDSKY=EnhancedSky_2.1.0.zip
 # Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
 DISTANTTERRAIN=DistantTerrain_2.4.1.zip
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
-MOUTAINSHILLS="Mountain And Hills 1.01.zip"
+MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 REALGRASS=RealGrass_2.2.7z
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
@@ -37,6 +76,7 @@ LOADINGSCREEN=LoadingScreen_2.2_.7z
 LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
 # Gameplay
+
 # Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 WARMASHES=WarmAshesV1.1.rar
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
@@ -44,11 +84,13 @@ QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
 QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
 QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
+# --------------------------------------------------------------------
+
 unzip "$SOURCEDIR/$BASEGAME" -d "$TARGETDIR"
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
-# -- Cosmetic
+# -- Eye candy
 
 if [ "$REMASTER30" ]; then
     unrar x "$SOURCEDIR/$REMASTER30" "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/
@@ -119,4 +161,5 @@ if [ "$QUESTPACK1PERPETUALS" ]; then
     unzip -o "$SOURCEDIR/$QUESTPACK1PERPETUALS" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/QuestPacks
 fi
 
+echo "Installed successfully under \`$TARGETDIR'"
 exit 0
