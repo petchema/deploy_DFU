@@ -182,5 +182,11 @@ if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Mods/ StandaloneLinux/archaeologists.dfmod
 fi
 
+# Hack https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
+if [ "$ARC_CONVENIENTCLOCK" ]; then
+    # Keep original compass
+    rm "$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml} || true
+fi
+
 echo "Installed successfully under \`$TARGETDIR'"
 exit 0
