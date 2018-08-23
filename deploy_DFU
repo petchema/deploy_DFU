@@ -45,12 +45,14 @@ ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-127.zip
 
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
 ARC_REMASTER30=Textures_3.0.rar
+# Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
+#ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
 # Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
 ARC_ENHANCEDSKY=EnhancedSky_2.1.0.zip
 # Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
-ARC_DISTANTTERRAIN=DistantTerrain_2.4.1.zip
+ARC_DISTANTTERRAIN=DistantTerrain_2.4.2.zip
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
-ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
+#ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 ARC_REALGRASS=RealGrass_2.2.7z
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
@@ -118,6 +120,10 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 if [ "$ARC_REMASTER30" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
+fi
+
+if [ "$ARC_HANDPAINTEDMODELS" ]; then
+    unzip -e "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
 fi
 
 if [ "$ARC_ENHANCEDSKY" ]; then
