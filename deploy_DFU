@@ -5,7 +5,7 @@
 set -e
 
 self=$(basename "$0")
-version="1.0"
+version="1.1"
 
 fatal() {
     echo "$self: $1" 1>&2
@@ -105,72 +105,87 @@ done
 
 # -- Let's go
 
-SIGNATUREFILE=.deploy_DFU
+SIGNATUREFILE="$TARGETDIR/.deploy_DFU"
 if [ -d "$TARGETDIR" ]; then
-    [ -e "$TARGETDIR/$SIGNATUREFILE" ] || fatal "not replacing \`$TARGETDIR' we didn't create"
+    [ -e "$SIGNATUREFILE" ] || fatal "not replacing \`$TARGETDIR' we didn't create"
     rm -rf "$TARGETDIR"
 fi
 mkdir -p "$TARGETDIR"
-echo "Created by $self $version" > "$TARGETDIR/$SIGNATUREFILE"
+echo "Install script: $self $version" > "$SIGNATUREFILE"
 
 unzip "$SOURCEDIR/$ARC_BASEGAME" -d "$TARGETDIR"
+echo "Base game: $ARC_BASEGAME" >> "$SIGNATUREFILE"
+echo "Options: USE_HACKS=$USE_HACKS" >> "$SIGNATUREFILE"
 assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 # -- Eye candy
 
 if [ "$ARC_REMASTER30" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
+    echo "Mod: $ARC_REMASTER30" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_HANDPAINTEDMODELS" ]; then
     unzip -j "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
+    echo "Mod: $ARC_HANDPAINTEDMODELS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_ENHANCEDSKY" ]; then
     unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux/enhanced sky.dfmod"
+    echo "Mod: $ARC_ENHANCEDSKY" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_DISTANTTERRAIN" ]; then
     unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux/distant terrain.dfmod"
+    echo "Mod: $ARC_DISTANTTERRAIN" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_MOUNTAINSHILLS" ]; then
     unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "StandaloneLinux/mountains and hills.dfmod"
+    echo "Mod: $ARC_MOUNTAINSHILLS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_REALGRASS" ]; then
     7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$assets"/Mods/
+    echo "Mod: $ARC_REALGRASS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_VIBRANTWIND" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
+    echo "Mod: $ARC_VIBRANTWIND" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_REALTIMEREFLECTIONS" ]; then
     unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
     unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
     unzip /tmp/RealtimeReflections_textures.zip -d "$assets"/Textures
+    echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_VILLAGERIMMERSION" ]; then
     unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Textures/
+    echo "Mod: $ARC_VILLAGERIMMERSION" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_POSTPROCESSING" ]; then
     7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$assets"/Mods/
+    echo "Mod: $ARC_POSTPROCESSING" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_CONVENIENTCLOCK" ]; then
     unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
+    echo "Mod: $ARC_CONVENIENTCLOCK" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_LOADINGSCREEN" ]; then
     7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
     mv /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
     7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
+    echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
 
     if [ "$ARC_LOADINGSCREENOBLIVION" ]; then
 	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
+	echo "Mod: $ARC_LOADINGSCREENOBLIVION" >> "$SIGNATUREFILE"
     fi
 fi
 
@@ -179,20 +194,25 @@ fi
 if [ "$ARC_WARMASHES" ]; then
     unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
     unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/QuestPacks/ WAQ00.txt
+    echo "Mod: $ARC_WARMASHES" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_QUESTPACK1GUILD" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
+    echo "Mod: $ARC_QUESTPACK1GUILD" >> "$SIGNATUREFILE"
 fi
 if [ "$ARC_QUESTPACK1NONGUILD" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
+    echo "Mod: $ARC_QUESTPACK1NONGUILD" >> "$SIGNATUREFILE"
 fi
 if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
+    echo "Mod: $ARC_QUESTPACK1PERPETUALS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ StandaloneLinux/archaeologists.dfmod
+    echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
 fi
 
 if [ "$USE_HACKS" = "1" ]; then
@@ -205,5 +225,6 @@ if [ "$USE_HACKS" = "1" ]; then
     fi
 fi
 
+echo "Installation: successful" >> "$SIGNATUREFILE"
 echo "Installed successfully under \`$TARGETDIR'"
 exit 0
