@@ -123,7 +123,7 @@ if [ "$ARC_REMASTER30" ]; then
 fi
 
 if [ "$ARC_HANDPAINTEDMODELS" ]; then
-    unzip -e "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
+    unzip -j "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
 fi
 
 if [ "$ARC_ENHANCEDSKY" ]; then
