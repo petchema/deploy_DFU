@@ -39,66 +39,66 @@ TARGETDIR="$1"
 
 source "$configfile"
 
+# -- Archive names
+
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
 ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-128.zip
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
-[ "$REMASTER30" = "Y" ] && ARC_REMASTER30=Textures_3.0.rar
+ARC_REMASTER30=Textures_3.0.rar
 
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
-[ "$HANDPAINTEDMODELS" = "Y" ] && ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
+ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
 
 # Compass texture https://forums.dfworkshop.net/viewtopic.php?f=14&t=630
-[ "$COMPASSTEXTURES" = "Y" ] && ARC_COMPASSTEXTURES=CompassTextures.7z
+ARC_COMPASSTEXTURES=CompassTextures.7z
 
-# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
-[ "$ENHANCEDSKY" = "Y" ] && ARC_ENHANCEDSKY=EnhancedSky_2.1.0.zip
+# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=40
+ARC_ENHANCEDSKY=EnhancedSky_2.1.0.zip
 
 # Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
-[ "$DISTANTTERRAIN" = "Y" ] && ARC_DISTANTTERRAIN=DistantTerrain_2.4.2.zip
+ARC_DISTANTTERRAIN=DistantTerrain_2.4.2.zip
 
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
-[ "$MOUNTAINSHILLS" = "Y" ] && ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
+ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
 
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
-[ "$REALGRASS" = "Y" ] && ARC_REALGRASS=RealGrass_2.2.7z
+ARC_REALGRASS=RealGrass_2.2.7z
 
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
-[ "$VIBRANTWIND" = "Y" ] && ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
+ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
 
 # Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
-[ "$REALTIMEREFLECTIONS" = "Y" ] && ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
+ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
 
 # Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-[ "$VILLAGERIMMERSION" = "Y" ] && ARC_VILLAGERIMMERSION=VIO-V2.rar
+ARC_VILLAGERIMMERSION=VIO-V2.rar
 
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
-[ "$POSTPROCESSING" = "Y" ] && ARC_POSTPROCESSING=PostProcessing_0.3.1a_.7z
+ARC_POSTPROCESSING=PostProcessing_0.3.1a_.7z
 
 # Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
-[ "$CONVENIENTCLOCK" = "Y" ] && ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
+ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 
 # Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
-if [ "$LOADINGSCREEN" = "Y" ]; then
-    ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
-    [ "$LOADINGSCREENOBLIVION" = "Y" ] && ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
-fi
+ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
+ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
 # Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-[ "$WARMASHES" = "Y" ] && ARC_WARMASHES=WarmAshesV1.1.rar
+ARC_WARMASHES=WarmAshesV1.1.rar
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-[ "$QUESTPACK1GUILD" = "Y" ] && ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
-[ "$QUESTPACK1NONGUILD" = "Y" ] && ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
-[ "$QUESTPACK1PERPETUALS" = "Y" ] && ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
+ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
+ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
+ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
 # Quest Showcase https://forums.dfworkshop.net/viewtopic.php?f=25&t=614
-[ "$QUESTSHOWCASE" = "Y" ] && ARC_QUESTSHOWCASE=Quests.zip
+ARC_QUESTSHOWCASE=Quests.zip
 
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
-[ "$ARCHEOLOGISTSGUILD" = "Y" ] && ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.2.zip
+ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.2.zip
 
 # -- preflight checks
 
@@ -111,12 +111,20 @@ check_available unzip
 check_available unrar
 check_available 7z
 
+BASEGAME=Y
+missing_options=()
 for archive in ${!ARC_*}; do
-    if [ "${!archive}" ]; then
-	echo "Testing \`${!archive}' presence..."
-	[ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
+    option="${archive#ARC_}"
+    if [ "${!option}" ]; then
+	if [ "${!option}" = "Y" ]; then
+	    echo "Testing \`${!archive}' presence..."
+	    [ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
+	fi
+    else
+	missing_options+=("$option")
     fi
 done
+[ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[@]}"
 
 # -- Let's go
 
@@ -135,17 +143,17 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 # -- Eye candy
 
-if [ "$ARC_REMASTER30" ]; then
+if [ "$REMASTER30" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
     echo "Mod: $ARC_REMASTER30" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_HANDPAINTEDMODELS" ]; then
+if [ "$HANDPAINTEDMODELS" = "Y" ]; then
     unzip -j "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
     echo "Mod: $ARC_HANDPAINTEDMODELS" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_COMPASSTEXTURES" ]; then
+if [ "$COMPASSTEXTURES" = "Y" ]; then
     7z e "$ARC_COMPASSTEXTURES" "[MOD] CompassTextures/$COMPASSTEXTURE/*" -o"$assets"/Textures/Img/ -aoa
     # Those compasses have standard size
     for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.xml; do
@@ -154,60 +162,60 @@ if [ "$ARC_COMPASSTEXTURES" ]; then
     echo "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_ENHANCEDSKY" ]; then
+if [ "$ENHANCEDSKY" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux/enhanced sky.dfmod"
     echo "Mod: $ARC_ENHANCEDSKY" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_DISTANTTERRAIN" ]; then
+if [ "$DISTANTTERRAIN" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux/distant terrain.dfmod"
     echo "Mod: $ARC_DISTANTTERRAIN" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_MOUNTAINSHILLS" ]; then
+if [ "$MOUNTAINSHILLS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "StandaloneLinux/mountains and hills.dfmod"
     echo "Mod: $ARC_MOUNTAINSHILLS" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_REALGRASS" ]; then
+if [ "$REALGRASS" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$assets"/Mods/
     echo "Mod: $ARC_REALGRASS" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_VIBRANTWIND" ]; then
+if [ "$VIBRANTWIND" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
     echo "Mod: $ARC_VIBRANTWIND" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_REALTIMEREFLECTIONS" ]; then
+if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
     unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
     unzip /tmp/RealtimeReflections_textures.zip -d "$assets"/Textures
     echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_VILLAGERIMMERSION" ]; then
+if [ "$VILLAGERIMMERSION" = "Y" ]; then
     unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Textures/
     echo "Mod: $ARC_VILLAGERIMMERSION" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_POSTPROCESSING" ]; then
+if [ "$POSTPROCESSING" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$assets"/Mods/
     echo "Mod: $ARC_POSTPROCESSING" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_CONVENIENTCLOCK" ]; then
+if [ "$CONVENIENTCLOCK" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
     echo "Mod: $ARC_CONVENIENTCLOCK" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_LOADINGSCREEN" ]; then
+if [ "$LOADINGSCREEN" = "Y" ]; then
     7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
     mv -v /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
     7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
     echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
 
-    if [ "$ARC_LOADINGSCREENOBLIVION" ]; then
+    if [ "$LOADINGSCREENOBLIVION" = "Y" ]; then
 	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
 	echo "Mod: $ARC_LOADINGSCREENOBLIVION" >> "$SIGNATUREFILE"
     fi
@@ -215,32 +223,32 @@ fi
 
 # -- Gameplay
 
-if [ "$ARC_WARMASHES" ]; then
+if [ "$WARMASHES" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
     unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/QuestPacks/ WAQ00.txt
     echo "Mod: $ARC_WARMASHES" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_QUESTPACK1GUILD" ]; then
+if [ "$QUESTPACK1GUILD" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
     echo "Mod: $ARC_QUESTPACK1GUILD" >> "$SIGNATUREFILE"
 fi
-if [ "$ARC_QUESTPACK1NONGUILD" ]; then
+if [ "$QUESTPACK1NONGUILD" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
     echo "Mod: $ARC_QUESTPACK1NONGUILD" >> "$SIGNATUREFILE"
 fi
-if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
+if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
     echo "Mod: $ARC_QUESTPACK1PERPETUALS" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_QUESTSHOWCASE" ]; then
+if [ "$QUESTSHOWCASE" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTSHOWCASE" -d /tmp
-    mv -v /tmp/Quests.zip/* "$assets"/Mods/
+    cp -av /tmp/Quests.zip/* "$assets"/
     echo "Mod: $ARC_QUESTSHOWCASE" >> "$SIGNATUREFILE"
 fi
 
-if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
+if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ StandaloneLinux/archaeologists.dfmod
     echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
 fi
