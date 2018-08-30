@@ -255,7 +255,7 @@ fi
 
 if [ "$USE_HACKS" = "Y" ]; then
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
-    if [[ "$ARC_CONVENIENTCLOCK" && ( -e "$assets"/Textures/Img/COMPASS.IMG.xml || -e "$assets"/Textures/Img/COMPBOX.IMG.xml ) ]]; then
+    if [[ "$CONVENIENTCLOCK" = "Y" && ( -e "$assets"/Textures/Img/COMPASS.IMG.xml || -e "$assets"/Textures/Img/COMPBOX.IMG.xml ) ]]; then
 	# Not compatible with resized compasses, revert to original one
 	for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
 	    [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
