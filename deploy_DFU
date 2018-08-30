@@ -134,7 +134,7 @@ fi
 
 if [ "$ARC_LOADINGSCREEN" ]; then
     7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
-    mv /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
+    mv -v /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
     7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
     echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
 
@@ -163,6 +163,12 @@ fi
 if [ "$ARC_QUESTPACK1PERPETUALS" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
     echo "Mod: $ARC_QUESTPACK1PERPETUALS" >> "$SIGNATUREFILE"
+fi
+
+if [ "$ARC_QUESTSHOWCASE" ]; then
+    unzip -o "$SOURCEDIR/$ARC_QUESTSHOWCASE" -d /tmp
+    mv -v /tmp/Quests.zip/* "$assets"/Mods/
+    echo "Mod: $ARC_QUESTSHOWCASE" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
