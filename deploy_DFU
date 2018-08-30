@@ -5,7 +5,7 @@
 set -e
 
 self=$(basename "$0")
-version="1.1"
+version="1.2"
 
 fatal() {
     echo "$self: $1" 1>&2
@@ -13,11 +13,9 @@ fatal() {
 }
 
 usage() {
-    echo "Usage: $self [install directory]" 1>&2
+    echo "Usage: $self [-f <config file>] <target_directory>" 1>&2
     exit 1
 }
-
-[[ "$1" = "-h" || "$1" = "--help" ]] && usage
 
 owndir=$(dirname "$0")
 owndir=$(cd "$owndir" && pwd)
@@ -26,10 +24,81 @@ owndir=$(cd "$owndir" && pwd)
 # Set defaults
 SOURCEDIR="$owndir"
 
+configfile=~/".${self}rc"
+
+if [ "$1" = "-f" ]; then
+    configfile="$2"
+    shift 2
+fi
+[[ "$1" = "-h" || "$1" = "--help" ]] && usage
+
 [ -n "$1" ] || usage
 TARGETDIR="$1"
 
-source "$owndir/$self.cfg"
+[ -e "$configfile" ] || fatal "Can't file configuration file \`$configfile'; Please use sample.${self}rc as a template"
+
+source "$configfile"
+
+# Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
+ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-128.zip
+
+# Mods https://forums.dfworkshop.net/viewforum.php?f=27
+
+# Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
+[ "$REMASTER30" = "Y" ] && ARC_REMASTER30=Textures_3.0.rar
+
+# Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
+[ "$HANDPAINTEDMODELS" = "Y" ] && ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
+
+# Compass texture https://forums.dfworkshop.net/viewtopic.php?f=14&t=630
+[ "$COMPASSTEXTURES" = "Y" ] && ARC_COMPASSTEXTURES=CompassTextures.7z
+
+# Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=14&t=29&start=50
+[ "$ENHANCEDSKY" = "Y" ] && ARC_ENHANCEDSKY=EnhancedSky_2.1.0.zip
+
+# Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
+[ "$DISTANTTERRAIN" = "Y" ] && ARC_DISTANTTERRAIN=DistantTerrain_2.4.2.zip
+
+# Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
+[ "$MOUNTAINSHILLS" = "Y" ] && ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
+
+# Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
+[ "$REALGRASS" = "Y" ] && ARC_REALGRASS=RealGrass_2.2.7z
+
+# Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
+[ "$VIBRANTWIND" = "Y" ] && ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
+
+# Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
+[ "$REALTIMEREFLECTIONS" = "Y" ] && ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
+
+# Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+[ "$VILLAGERIMMERSION" = "Y" ] && ARC_VILLAGERIMMERSION=VIO-V2.rar
+
+# Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
+[ "$POSTPROCESSING" = "Y" ] && ARC_POSTPROCESSING=PostProcessing_0.3.1a_.7z
+
+# Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
+[ "$CONVENIENTCLOCK" = "Y" ] && ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
+
+# Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
+if [ "$LOADINGSCREEN" = "Y" ]; then
+    ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
+    [ "$LOADINGSCREENOBLIVION" = "Y" ] && ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
+fi
+
+# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
+[ "$WARMASHES" = "Y" ] && ARC_WARMASHES=WarmAshesV1.1.rar
+
+# DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
+[ "$QUESTPACK1GUILD" = "Y" ] && ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
+[ "$QUESTPACK1NONGUILD" = "Y" ] && ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
+[ "$QUESTPACK1PERPETUALS" = "Y" ] && ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
+
+# Quest Showcase https://forums.dfworkshop.net/viewtopic.php?f=25&t=614
+[ "$QUESTSHOWCASE" = "Y" ] && ARC_QUESTSHOWCASE=Quests.zip
+
+# Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
+[ "$ARCHEOLOGISTSGUILD" = "Y" ] && ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.2.zip
 
 # -- preflight checks
 
@@ -51,7 +120,7 @@ done
 
 # -- Let's go
 
-SIGNATUREFILE="$TARGETDIR/.deploy_DFU"
+SIGNATUREFILE="$TARGETDIR/.deploy_DFU.log"
 if [ -d "$TARGETDIR" ]; then
     [ -e "$SIGNATUREFILE" ] || fatal "not replacing \`$TARGETDIR' we didn't create"
     rm -rf "$TARGETDIR"
@@ -176,7 +245,7 @@ if [ "$ARC_ARCHEOLOGISTSGUILD" ]; then
     echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
 fi
 
-if [ "$USE_HACKS" = "1" ]; then
+if [ "$USE_HACKS" = "Y" ]; then
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
     if [[ "$ARC_CONVENIENTCLOCK" && ( -e "$assets"/Textures/Img/COMPASS.IMG.xml || -e "$assets"/Textures/Img/COMPBOX.IMG.xml ) ]]; then
 	# Not compatible with resized compasses, revert to original one

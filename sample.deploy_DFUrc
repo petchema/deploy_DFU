@@ -1,0 +1,38 @@
+# Copy this file as ~/.deploy_DFU.cfg, or use -f to specify another path
+
+# By default the script will look for archives in its directory;
+# Feel free to override here
+#SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
+
+
+# Eye candy
+
+REMASTER30=Y
+HANDPAINTEDMODELS=N
+COMPASSTEXTURES=Y
+  # Classic, Daedric, Scroll, Silver, Wood
+  COMPASSTEXTURE=Classic
+ENHANCEDSKY=Y
+DISTANTTERRAIN=Y
+MOUNTAINSHILLS=N
+REALGRASS=Y
+VIBRANTWIND=Y
+REALTIMEREFLECTIONS=Y
+VILLAGERIMMERSION=Y
+POSTPROCESSING=Y
+CONVENIENTCLOCK=Y
+LOADINGSCREEN=Y
+LOADINGSCREENOBLIVION=Y
+
+# Gameplay
+
+WARMASHES=Y
+QUESTPACK1GUILD=Y
+QUESTPACK1NONGUILD=Y
+QUESTPACK1PERPETUALS=Y
+QUESTSHOWCASE=Y
+ARCHEOLOGISTSGUILD=Y
+
+# Allow workarounds for known issues between mods
+
+USE_HACKS=Y
