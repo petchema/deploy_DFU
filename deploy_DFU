@@ -42,7 +42,7 @@ source "$configfile"
 # -- Archive names
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
-ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-128.zip
+ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-131.zip
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
