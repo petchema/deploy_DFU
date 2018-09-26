@@ -35,6 +35,10 @@ fi
 [ -n "$1" ] || usage
 TARGETDIR="$1"
 
+TEMP=$(mktemp -d)
+[ -d "$TEMP" ] || fatal "Couldn't create a private temp directory"
+trap "rm -rf $TEMP" EXIT
+
 [ -e "$configfile" ] || fatal "Can't file configuration file \`$configfile'; Please use sample.${self}rc as a template"
 
 source "$configfile"
@@ -66,6 +70,9 @@ ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
 
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 ARC_REALGRASS=RealGrass_2.2.7z
+
+# Harvestable Crops https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
+ARC_HARVESTABLECROPS=HarvestableCrops_v0.2_.7z
 
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
 ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
@@ -124,7 +131,7 @@ for archive in ${!ARC_*}; do
 	missing_options+=("$option")
     fi
 done
-[ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[@]}"
+[ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
 # -- Let's go
 
@@ -182,6 +189,11 @@ if [ "$REALGRASS" = "Y" ]; then
     echo "Mod: $ARC_REALGRASS" >> "$SIGNATUREFILE"
 fi
 
+if [ "$HARVESTABLECROPS" = "Y" ]; then
+    7z e "$SOURCEDIR/$ARC_HARVESTABLECROPS" "${ARC_HARVESTABLECROPS%.7z}"/Linux/harvestablecrops.dfmod -o"$assets"/Mods/
+    echo "Mod: $ARC_HARVESTABLECROPS" >> "$SIGNATUREFILE"
+fi
+
 if [ "$VIBRANTWIND" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
     echo "Mod: $ARC_VIBRANTWIND" >> "$SIGNATUREFILE"
@@ -189,8 +201,8 @@ fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
-    unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d /tmp RealtimeReflections_textures.zip
-    unzip /tmp/RealtimeReflections_textures.zip -d "$assets"/Textures
+    unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TEMP" RealtimeReflections_textures.zip
+    unzip "$TEMP"/RealtimeReflections_textures.zip -d "$assets"/Textures
     echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
 fi
 
@@ -210,8 +222,8 @@ if [ "$CONVENIENTCLOCK" = "Y" ]; then
 fi
 
 if [ "$LOADINGSCREEN" = "Y" ]; then
-    7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o/tmp "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
-    mv -v /tmp/"${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
+    7z x "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$TEMP" "${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen
+    mv -v "$TEMP/${ARC_LOADINGSCREEN%.7z}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
     7z e "$SOURCEDIR/$ARC_LOADINGSCREEN" -o"$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.7z}"/OS-specific/Linux/loadingscreen.dfmod
     echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
 
@@ -243,8 +255,8 @@ if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
 fi
 
 if [ "$QUESTSHOWCASE" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTSHOWCASE" -d /tmp
-    cp -av /tmp/Quests.zip/* "$assets"/
+    unzip -o "$SOURCEDIR/$ARC_QUESTSHOWCASE" -d "$TEMP"
+    cp -av "$TEMP"/Quests.zip/* "$assets"/
     echo "Mod: $ARC_QUESTSHOWCASE" >> "$SIGNATUREFILE"
 fi
 
