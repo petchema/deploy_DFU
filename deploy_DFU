@@ -93,6 +93,9 @@ ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
 ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
+# Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
+ARC_TEDIOUSTRAVEL=tedioustravel_0.1.0.zip
+
 # Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES=WarmAshesV1.1.rar
 
@@ -234,6 +237,10 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
 fi
 
 # -- Gameplay
+
+if [ "$TEDIOUSTRAVEL" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_TEDIOUSTRAVEL" -d "$assets"/Mods/ StandaloneLinux/tedioustravel.dfmod
+fi
 
 if [ "$WARMASHES" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
