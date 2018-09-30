@@ -272,7 +272,7 @@ if [ "$QUESTSHOWCASE" = "Y" ]; then
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ StandaloneLinux/archaeologists.dfmod
+    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ archaeologists.dfmod
     echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
 fi
 
