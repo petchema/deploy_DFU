@@ -4,6 +4,8 @@
 # Feel free to override here
 #SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
 
+# Use a development version of Daggerfall Unity
+BASEGAME_DEV=N
 
 # Eye candy
 

@@ -47,6 +47,10 @@ source "$configfile"
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
 ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-131.zip
+if [ "$BASEGAME_DEV" = "Y" ]; then
+    # zip containing everything below "build" subdirectory
+    ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
+fi
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
