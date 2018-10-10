@@ -244,6 +244,7 @@ fi
 
 if [ "$TEDIOUSTRAVEL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TEDIOUSTRAVEL" -d "$assets"/Mods/ StandaloneLinux/tedioustravel.dfmod
+    echo "Mod: $ARC_TEDIOUSTRAVEL" >> "$SIGNATUREFILE"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
