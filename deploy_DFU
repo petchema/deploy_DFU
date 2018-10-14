@@ -101,7 +101,7 @@ ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 ARC_TEDIOUSTRAVEL=tedioustravel_0.1.2.zip
 
 # Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-ARC_WARMASHES=WarmAshesV1.1.rar
+ARC_WARMASHES=FixedWarmAshes.zip
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
@@ -248,8 +248,8 @@ if [ "$TEDIOUSTRAVEL" = "Y" ]; then
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
-    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/Quests/ WAQ01.txt WAQ02.txt WAQ03.txt WAQ04.txt
-    unrar x "$SOURCEDIR/$ARC_WARMASHES" -o "$assets"/QuestPacks/ WAQ00.txt
+    unzip -j "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/QuestPacks/ Kamer/WarmAshes/WAQ00.txt
+    unzip -j "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/Quests/ Kamer/WarmAshes/WAQ01.txt Kamer/WarmAshes/WAQ02.txt Kamer/WarmAshes/WAQ03.txt Kamer/WarmAshes/WAQ04.txt
     echo "Mod: $ARC_WARMASHES" >> "$SIGNATUREFILE"
 fi
 
