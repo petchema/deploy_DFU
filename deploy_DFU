@@ -97,6 +97,9 @@ ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
 ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
+# SoundClips mixdown https://forums.dfworkshop.net/viewtopic.php?f=14&p=16128#p16128
+ARC_SOUNDCLIPSMIXDOWN=SoundClips-44kHz-mixdown.zip
+
 # Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
 ARC_TEDIOUSTRAVEL=tedioustravel_0.1.2.zip
 
@@ -238,6 +241,14 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
 	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
 	echo "Mod: $ARC_LOADINGSCREENOBLIVION" >> "$SIGNATUREFILE"
     fi
+fi
+
+# -- Sound
+
+if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
+      mkdir -p "$assets"/Sound/
+      unzip "$SOURCEDIR/$ARC_SOUNDCLIPSMIXDOWN" -d "$assets"/Sound/
+      echo "Mod: $ARC_SOUNDCLIPSMIXDOWN" >> "$SIGNATUREFILE"
 fi
 
 # -- Gameplay
