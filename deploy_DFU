@@ -57,6 +57,9 @@ fi
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
 ARC_REMASTER30=Textures_3.0.rar
 
+# Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
+ARC_BRIGHTEXIT=095_0-0_Emission.png
+
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
 ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
 
@@ -163,6 +166,11 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 if [ "$REMASTER30" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
     echo "Mod: $ARC_REMASTER30" >> "$SIGNATUREFILE"
+fi
+
+if [ "$BRIGHTEXIT" = "Y" ]; then
+    cp "$SOURCEDIR/$ARC_BRIGHTEXIT" "$assets"/Textures/
+    echo "Mod: $ARC_BRIGHTEXIT" >> "$SIGNATUREFILE"
 fi
 
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then

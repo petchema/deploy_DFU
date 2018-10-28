@@ -10,6 +10,7 @@ BASEGAME_DEV=N
 # Eye candy
 
 REMASTER30=Y
+BRIGHTEXIT=Y
 HANDPAINTEDMODELS=N
 COMPASSTEXTURES=Y
   # Classic, Daedric, Scroll, Silver, Wood
