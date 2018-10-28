@@ -325,14 +325,14 @@ if [ "$USE_HACKS" = "Y" ]; then
     if [[ "$CONVENIENTCLOCK" = "Y" && ( -e "$assets"/Textures/Img/COMPASS.IMG.xml || -e "$assets"/Textures/Img/COMPBOX.IMG.xml ) ]]; then
 	# Not compatible with resized compasses, revert to original one
 	for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
-	    [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
+	    [ -e "$compassfile" ] && mv -v "$compassfile" "$compassfile.disabled"
 	done
     fi
 
     # Remove assets that are not totally compatible with
     # textures compression (flickering)
     if [ "$REMASTER30" = "Y" -o "$TEXTURESXL" = "Y" ]; then
-	rm -f "$assets"/Textures/{381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,451,452,453,454,455,456}_{[0-9],1[0-9]}-[0-4].{png,xml}
+	rm -vf "$assets"/Textures/{381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,451,452,453,454,455,456}_{[0-9],1[0-9]}-[0-4].{png,xml}
     fi
 fi
 
