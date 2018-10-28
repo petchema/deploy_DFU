@@ -57,6 +57,9 @@ fi
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
 ARC_REMASTER30=Textures_3.0.rar
 
+# Daggerfall Textures XL https://forums.dfworkshop.net/viewtopic.php?f=27&t=1176
+ARC_TEXTURESXL=Textures.zip
+
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
 
@@ -146,6 +149,8 @@ for archive in ${!ARC_*}; do
 done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
+[ "$REMASTER30" = "Y" -a "$TEXTUREXL" = "Y" ] && fatal "You can only install one of REMASTER30 and TEXTURESXL"
+
 # -- Let's go
 
 SIGNATUREFILE="$TARGETDIR/.deploy_DFU.log"
@@ -166,6 +171,11 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 if [ "$REMASTER30" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
     echo "Mod: $ARC_REMASTER30" >> "$SIGNATUREFILE"
+fi
+
+if [ "$TEXTURESXL" = "Y" ]; then
+    unzip -o "$SOURCEDIR/$ARC_TEXTURESXL" -d "$assets"/
+    echo "Mod: $ARC_TEXTURESXL" >> "$SIGNATUREFILE"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
@@ -219,9 +229,13 @@ fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
-    unzip -o "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TEMP" RealtimeReflections_textures.zip
-    unzip "$TEMP"/RealtimeReflections_textures.zip -d "$assets"/Textures
-    echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
+    if [ "$TEXTURESXL" = "Y" ]; then
+        echo "TEXTURESXL has REALTIMEREFLECTIONS textures already, skipping"
+    else
+        unzip "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TEMP" RealtimeReflections_textures.zip
+        unzip "$TEMP"/RealtimeReflections_textures.zip -d "$assets"/Textures
+        echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
+    fi
 fi
 
 if [ "$VILLAGERIMMERSION" = "Y" ]; then
@@ -307,7 +321,7 @@ if [ "$USE_HACKS" = "Y" ]; then
 
     # Remove assets that are not totally compatible with
     # textures compression (flickering)
-    if [ "$REMASTER30" = "Y" ]; then
+    if [ "$REMASTER30" = "Y" -o "$TEXTURESXL" = "Y" ]; then
 	rm -f "$assets"/Textures/{381,382,383,384,385,386,387,388,389,390,391,392,393,394,395,396,397,398,399,451,452,453,454,455,456}_{[0-9],1[0-9]}-[0-4].{png,xml}
     fi
 fi
