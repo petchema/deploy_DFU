@@ -103,7 +103,12 @@ ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
 ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
+# Soundscape by MidnightPrince inspired by "Music To Travel By" by Helegad https://forums.dfworkshop.net/viewtopic.php?f=14&t=1347&p=16078#p16078
+# Renamed from Sound.zip
+ARC_MIDNIGHTPRINCESOUNDSCAPE=Soundscape_MidnightPrince.zip
+
 # SoundClips mixdown https://forums.dfworkshop.net/viewtopic.php?f=14&p=16128#p16128
+# Renamed from sounds-44kHz-mixdown.zip
 ARC_SOUNDCLIPSMIXDOWN=SoundClips-44kHz-mixdown.zip
 
 # Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
@@ -266,6 +271,11 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
 fi
 
 # -- Sound
+
+if [ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" ]; then
+    unzip "$ARC_MIDNIGHTPRINCESOUNDSCAPE" -d "$assets"/
+    echo "Mod: $ARC_MIDNIGHTPRINCESOUNDSCAPE" >> "$SIGNATUREFILE"
+fi
 
 if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
       mkdir -p "$assets"/Sound/
