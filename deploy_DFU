@@ -46,7 +46,7 @@ source "$configfile"
 # -- Archive names
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
-ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-137.zip
+ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-138.zip
 if [ "$BASEGAME_DEV" = "Y" ]; then
     # zip containing everything below "build" subdirectory
     ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
