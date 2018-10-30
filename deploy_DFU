@@ -239,8 +239,8 @@ if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
     else
         unzip "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TEMP" RealtimeReflections_textures.zip
         unzip "$TEMP"/RealtimeReflections_textures.zip -d "$assets"/Textures
-        echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
     fi
+    echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$VILLAGERIMMERSION" = "Y" ]; then
