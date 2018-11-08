@@ -94,7 +94,7 @@ ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.0.zip
 ARC_VILLAGERIMMERSION=VIO-V2.rar
 
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
-ARC_POSTPROCESSING=PostProcessing_0.3.1a_.7z
+ARC_POSTPROCESSING=PostProcessing_1.0.0.zip
 
 # Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
 ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
@@ -249,7 +249,7 @@ if [ "$VILLAGERIMMERSION" = "Y" ]; then
 fi
 
 if [ "$POSTPROCESSING" = "Y" ]; then
-    7z e "$SOURCEDIR/$ARC_POSTPROCESSING" "${ARC_POSTPROCESSING%.7z}"/Linux/postprocessing.dfmod -o"$assets"/Mods/
+    unzip -j "$SOURCEDIR/$ARC_POSTPROCESSING" -d "$assets"/Mods "${ARC_POSTPROCESSING%.zip}"/Linux/postprocessing.dfmod
     echo "Mod: $ARC_POSTPROCESSING" >> "$SIGNATUREFILE"
 fi
 
