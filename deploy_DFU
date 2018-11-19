@@ -263,6 +263,8 @@ fi
 
 if [ "$CONVENIENTCLOCK" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
+    # unzip "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$TEMP" "\[OPTIONAL\] TEXTURE OVERRIDE/*"
+    # cp -rv "$TEMP/[OPTIONAL] TEXTURE OVERRIDE/StreamingAssets/Textures/Clock" "$assets"/Textures/
     echo "Mod: $ARC_CONVENIENTCLOCK" >> "$SIGNATUREFILE"
 fi
 
