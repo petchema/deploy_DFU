@@ -82,7 +82,7 @@ ARC_DISTANTTERRAIN=DistantTerrain_2.4.2.zip
 ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
 
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
-ARC_REALGRASS=RealGrass_2.2.7z
+ARC_REALGRASS=RealGrass_2.3.zip
 
 # Harvestable Crops https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 ARC_HARVESTABLECROPS=HarvestableCrops_v0.2_.7z
@@ -226,7 +226,7 @@ if [ "$MOUNTAINSHILLS" = "Y" ]; then
 fi
 
 if [ "$REALGRASS" = "Y" ]; then
-    7z e "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.7z}"/Mod/Linux/realgrass.dfmod -o"$assets"/Mods/
+    unzip -j "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.zip}"/Mod/Linux/realgrass.dfmod -d "$assets"/Mods/
     echo "Mod: $ARC_REALGRASS" >> "$SIGNATUREFILE"
 fi
 
