@@ -106,6 +106,9 @@ ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 ARC_LOADINGSCREEN=LoadingScreen_2.2_.7z
 ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
+# Readable books https://forums.dfworkshop.net/viewtopic.php?f=14&t=1607
+ARC_READABLEBOOKS=books.zip
+
 # Soundscape by MidnightPrince inspired by "Music To Travel By" by Helegad https://forums.dfworkshop.net/viewtopic.php?f=14&t=1347&p=16078#p16078
 # Renamed from Sound.zip
 ARC_MIDNIGHTPRINCESOUNDSCAPE=Soundscape_MidnightPrince.zip
@@ -278,6 +281,11 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
 	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
 	echo "Mod: $ARC_LOADINGSCREENOBLIVION" >> "$SIGNATUREFILE"
     fi
+fi
+
+if [ "$READABLEBOOKS" = "Y" ]; then
+    unzip -j "$ARC_READABLEBOOKS" -d "$assets"/Books/
+    echo "Mod: $ARC_READABLEBOOKS" >> "$SIGNATUREFILE"
 fi
 
 # -- Sound
