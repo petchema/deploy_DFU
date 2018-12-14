@@ -46,7 +46,7 @@ source "$configfile"
 # -- Archive names
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
-ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-139.zip
+ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-140.zip
 if [ "$BASEGAME_DEV" = "Y" ]; then
     # zip containing everything below "build" subdirectory
     ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
@@ -338,10 +338,6 @@ if [ "$USE_HACKS" = "Y" ]; then
 	    [ -e "$compassfile" ] && mv -v "$compassfile" "$compassfile.disabled"
 	done
     fi
-
-    # Remove assets that are not totally compatible with
-    # textures compression (flickering)
-    rm -vf "$assets"/Textures/{38[1-9],39[0-9],45[1-6]}_{[0-9],1[0-9]}-[0-4].{png,xml} || true
 fi
 
 echo "Installation: successful" >> "$SIGNATUREFILE"
