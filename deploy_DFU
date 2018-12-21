@@ -124,8 +124,7 @@ ARC_TEDIOUSTRAVEL=TediousTravel_0.2.2.zip
 ARC_WARMASHES=FixedWarmAshes.zip
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-ARC_QUESTPACK1GUILD=Quest_Pack_1_Guild.zip
-ARC_QUESTPACK1NONGUILD=Quest_Pack_1_NonGuild.1.zip
+ARC_QUESTPACK1=Quest_Pack_1.zip
 ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
 # Quest Showcase https://forums.dfworkshop.net/viewtopic.php?f=25&t=614
@@ -314,13 +313,9 @@ if [ "$WARMASHES" = "Y" ]; then
     echo "Mod: $ARC_WARMASHES" >> "$SIGNATUREFILE"
 fi
 
-if [ "$QUESTPACK1GUILD" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1GUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
-    echo "Mod: $ARC_QUESTPACK1GUILD" >> "$SIGNATUREFILE"
-fi
-if [ "$QUESTPACK1NONGUILD" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1NONGUILD" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
-    echo "Mod: $ARC_QUESTPACK1NONGUILD" >> "$SIGNATUREFILE"
+if [ "$QUESTPACK1" = "Y" ]; then
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
+    echo "Mod: $ARC_QUESTPACK1" >> "$SIGNATUREFILE"
 fi
 if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
