@@ -130,9 +130,6 @@ ARC_WARMASHES=FixedWarmAshes.zip
 ARC_QUESTPACK1=Quest_Pack_1.zip
 ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
-# Quest Showcase https://forums.dfworkshop.net/viewtopic.php?f=25&t=614
-ARC_QUESTSHOWCASE=Quests.zip
-
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.4.zip
 
@@ -332,12 +329,6 @@ fi
 if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
     echo "Mod: $ARC_QUESTPACK1PERPETUALS" >> "$SIGNATUREFILE"
-fi
-
-if [ "$QUESTSHOWCASE" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTSHOWCASE" -d "$TEMP"
-    cp -av "$TEMP"/Quests.zip/* "$assets"/
-    echo "Mod: $ARC_QUESTSHOWCASE" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
