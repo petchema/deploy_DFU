@@ -113,6 +113,9 @@ ARC_READABLEBOOKS=books.zip
 # Renamed from Sound.zip
 ARC_MIDNIGHTPRINCESOUNDSCAPE=Soundscape_MidnightPrince.zip
 
+# Daggerfall Remastered Music Project https://forums.dfworkshop.net/viewtopic.php?f=22&t=921&start=70
+ARC_DFREMASTEREDMUSIC=DaggerfallMusicRemasteredFinal.rar
+
 # SoundClips mixdown https://forums.dfworkshop.net/viewtopic.php?f=14&p=16128#p16128
 # Renamed from sounds-44kHz-mixdown.zip
 ARC_SOUNDCLIPSMIXDOWN=SoundClips-1.2.zip
@@ -159,7 +162,11 @@ for archive in ${!ARC_*}; do
 done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
+# Textures
 [ "$REMASTER30" = "Y" -a "$TEXTUREXL" = "Y" ] && fatal "You can only install one of REMASTER30 and TEXTURESXL"
+
+# Songs
+[ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" -a "$DFREMASTEREDMUSIC" = "Y" ] && fatal "YOu can only install one of MIDNIGHTPRINCESOUNDSCAPE and DFREMASTEREDMUSIC"
 
 # -- Let's go
 
@@ -292,6 +299,11 @@ fi
 if [ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" ]; then
     unzip "$ARC_MIDNIGHTPRINCESOUNDSCAPE" -d "$assets"/
     echo "Mod: $ARC_MIDNIGHTPRINCESOUNDSCAPE" >> "$SIGNATUREFILE"
+fi
+
+if [ "$DFREMASTEREDMUSIC" = "Y" ]; then
+    unrar x "$ARC_DFREMASTEREDMUSIC" "$assets"/Sound/
+    echo "Mod: $ARC_DFREMASTEREDMUSIC" >> "$SIGNATUREFILE"
 fi
 
 if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
