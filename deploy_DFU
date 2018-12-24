@@ -46,11 +46,20 @@ source "$configfile"
 # -- Archive names
 
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
-ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-143.zip
-if [ "$BASEGAME_DEV" = "Y" ]; then
-    # zip containing everything below "build" subdirectory
-    ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
-fi
+case "$BASEGAME" in
+    STABLE)
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-143.zip
+        ;;
+    PREALPHA)
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-146.zip
+        ;;
+    DEV)
+        # zip containing everything below "build" subdirectory
+        ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
+        ;;
+    *)
+        fatal "BASEGAME should be one of STABLE, PREALPHA or DEV"
+esac
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
 
@@ -147,12 +156,11 @@ check_available unzip
 check_available unrar
 check_available 7z
 
-BASEGAME=Y
 missing_options=()
 for archive in ${!ARC_*}; do
     option="${archive#ARC_}"
     if [ "${!option}" ]; then
-	if [ "${!option}" = "Y" ]; then
+	if [ "${!option}" != "N" ]; then
 	    echo "Testing \`${!archive}' presence..."
 	    [ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
 	fi
@@ -188,7 +196,7 @@ mkdir -p "$TARGETDIR"
 echo "Install script: $self $version" > "$SIGNATUREFILE"
 
 unzip "$SOURCEDIR/$ARC_BASEGAME" -d "$TARGETDIR"
-echo "Base game: $ARC_BASEGAME" >> "$SIGNATUREFILE"
+echo "Base game: $ARC_BASEGAME ($BASEGAME)" >> "$SIGNATUREFILE"
 echo "Options: USE_HACKS=$USE_HACKS" >> "$SIGNATUREFILE"
 assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
