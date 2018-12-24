@@ -81,6 +81,9 @@ ARC_MEDIEVALCROSSHAIR=Crosshair.png
 # Charcoal Ghosts https://forums.dfworkshop.net/viewtopic.php?f=27&t=1526
 ARC_CHARCOALGHOSTS=CharcoalGhosts1.1.zip
 
+# Daggerfont https://forums.dfworkshop.net/viewtopic.php?f=14&t=1538&start=20#p18342
+ARC_DAGGERFONT=FONT0003-SDF.zip
+
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
 ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
 
@@ -230,6 +233,11 @@ fi
 if [ "$CHARCOALGHOSTS" = "Y" ]; then
     unzip -o "$ARC_CHARCOALGHOSTS" -d "$assets"/Textures/
     echo "Mod: $ARC_CHARCOALGHOSTS" >> "$SIGNATUREFILE"
+fi
+
+if [ "$DAGGERFONT" = "Y" ]; then
+    unzip -o "$ARC_DAGGERFONT" -d "$assets"/Fonts/
+    echo "Mod: $ARC_DAGGERFONT" >> "$SIGNATUREFILE"
 fi
 
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
