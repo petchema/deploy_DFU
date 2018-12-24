@@ -57,6 +57,9 @@ fi
 # Daggerfall Remaster 3.0 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
 ARC_REMASTER30=Textures_3.0.rar
 
+# D.R.E.A.M. https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
+ARC_DREAM=DREAM.rar
+
 # Daggerfall Textures XL https://forums.dfworkshop.net/viewtopic.php?f=27&t=1176
 ARC_TEXTURESXL=Textures.zip
 
@@ -159,11 +162,20 @@ for archive in ${!ARC_*}; do
 done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
+check_conflicting() {
+    local conflicting=()
+    for option in "$@"; do
+        [ "${!option}" = "Y" ] && conflicting+=("$option")
+    done
+    [ ${#conflicting[*]} -gt 1 ] && fatal "You selected conflicting options: ${conflicting[*]}"
+    return 0
+}
+
 # Textures
-[ "$REMASTER30" = "Y" -a "$TEXTUREXL" = "Y" ] && fatal "You can only install one of REMASTER30 and TEXTURESXL"
+check_conflicting DREAM REMASTER30 TEXTURESXL
 
 # Songs
-[ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" -a "$DFREMASTEREDMUSIC" = "Y" ] && fatal "YOu can only install one of MIDNIGHTPRINCESOUNDSCAPE and DFREMASTEREDMUSIC"
+check_conflicting MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
 
 # -- Let's go
 
@@ -181,6 +193,11 @@ echo "Options: USE_HACKS=$USE_HACKS" >> "$SIGNATUREFILE"
 assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 # -- Eye candy
+
+if [ "$DREAM" = "Y" ]; then
+    unrar x "$SOURCEDIR/$ARC_DREAM" "$assets"/Mods/
+    echo "Mod: $ARC_DREAM" >> "$SIGNATUREFILE"
+fi
 
 if [ "$REMASTER30" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
