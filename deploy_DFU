@@ -66,6 +66,9 @@ ARC_TEXTURESXL=Textures.zip
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
 
+# Mediaval Crosshair https://forums.dfworkshop.net/viewtopic.php?f=14&t=476&start=570#p18799
+ARC_MEDIEVALCROSSHAIR=Crosshair.png
+
 # Charcoal Ghosts https://forums.dfworkshop.net/viewtopic.php?f=27&t=1526
 ARC_CHARCOALGHOSTS=CharcoalGhosts1.1.zip
 
@@ -212,6 +215,11 @@ fi
 if [ "$BRIGHTEXIT" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_BRIGHTEXIT" "$assets"/Textures/
     echo "Mod: $ARC_BRIGHTEXIT" >> "$SIGNATUREFILE"
+fi
+
+if [ "$MEDIEVALCROSSHAIR" = "Y" ]; then
+    cp "$SOURCEDIR/$ARC_MEDIEVALCROSSHAIR" "$assets"/Textures/
+    echo "Mod: $ARC_MEDIEVALCROSSHAIR" >> "$SIGNATUREFILE"
 fi
 
 if [ "$CHARCOALGHOSTS" = "Y" ]; then
