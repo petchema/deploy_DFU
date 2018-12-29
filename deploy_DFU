@@ -148,6 +148,9 @@ ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.4.zip
 
+# Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
+ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
+
 # -- preflight checks
 
 check_available() {
@@ -367,6 +370,11 @@ fi
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ archaeologists.dfmod
     echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
+fi
+
+if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
+    cp "$SOURCEDIR/$ARC_PERSISTENTDUNGEONS" "$assets"/Mods/
+    echo "Mod: $ARC_PERSISTENTDUNGEONS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$USE_HACKS" = "Y" ]; then
