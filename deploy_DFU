@@ -72,6 +72,9 @@ ARC_DREAM=DREAM.rar
 # Daggerfall Textures XL https://forums.dfworkshop.net/viewtopic.php?f=27&t=1176
 ARC_TEXTURESXL=Textures.zip
 
+# TOPAZ AI Textures https://forums.dfworkshop.net/viewtopic.php?f=14&t=1642
+ARC_TOPAZTEXTURES=TexturesFreak2121.7z
+
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
 
@@ -189,6 +192,7 @@ check_conflicting() {
 }
 
 # Textures
+# Not TOPAZTEXTURES here since it's not a full overhaul
 check_conflicting DREAM REMASTER30 TEXTURESXL
 
 # Songs
@@ -224,6 +228,11 @@ fi
 if [ "$TEXTURESXL" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_TEXTURESXL" -d "$assets"/
     echo "Mod: $ARC_TEXTURESXL" >> "$SIGNATUREFILE"
+fi
+
+if [ "$TOPAZTEXTURES" = "Y" ]; then
+   7z x "$SOURCEDIR/$ARC_TOPAZTEXTURES" -o"$assets"/ -aoa
+   echo "Mod: $ARC_TOPAZTEXTURES" >> "$SIGNATUREFILE"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
