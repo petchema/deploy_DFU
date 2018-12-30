@@ -252,7 +252,7 @@ if [ "$HANDPAINTEDMODELS" = "Y" ]; then
 fi
 
 if [ "$FANCYINDICATORS" = "Y" ]; then
-    unzip "$SOURCEDIR/$ARC_FANCYINDICATORS" -d "$assets"/Textures/
+    unzip -o "$SOURCEDIR/$ARC_FANCYINDICATORS" -d "$assets"/
     echo "Mod: $ARC_FANCYINDICATORS" >> "$SIGNATUREFILE"
 fi
 
