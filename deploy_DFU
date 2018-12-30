@@ -237,17 +237,17 @@ if [ "$DISCRETECROSSHAIR" = "Y" ]; then
 fi
 
 if [ "$CHARCOALGHOSTS" = "Y" ]; then
-    unzip -o "$ARC_CHARCOALGHOSTS" -d "$assets"/Textures/
+    unzip -o "$SOURCEDIR/$ARC_CHARCOALGHOSTS" -d "$assets"/Textures/
     echo "Mod: $ARC_CHARCOALGHOSTS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$DAGGERFONT" = "Y" ]; then
-    unzip -o "$ARC_DAGGERFONT" -d "$assets"/Fonts/
+    unzip -o "$SOURCEDIR/$ARC_DAGGERFONT" -d "$assets"/Fonts/
     echo "Mod: $ARC_DAGGERFONT" >> "$SIGNATUREFILE"
 fi
 
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
-    unzip -j "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
     echo "Mod: $ARC_HANDPAINTEDMODELS" >> "$SIGNATUREFILE"
 fi
 
@@ -257,7 +257,7 @@ if [ "$FANCYINDICATORS" = "Y" ]; then
 fi
 
 if [ "$COMPASSTEXTURES" = "Y" ]; then
-    7z e "$ARC_COMPASSTEXTURES" "[MOD] CompassTextures/$COMPASSTEXTURE/*" -o"$assets"/Textures/Img/ -aoa
+    7z e "$SOURCEDIR/$ARC_COMPASSTEXTURES" "[MOD] CompassTextures/$COMPASSTEXTURE/*" -o"$assets"/Textures/Img/ -aoa
     # Those compasses have standard size
     for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.xml; do
 	[ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
@@ -331,19 +331,19 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
 fi
 
 if [ "$READABLEBOOKS" = "Y" ]; then
-    unzip -j "$ARC_READABLEBOOKS" -d "$assets"/Books/
+    unzip -j "$SOURCEDIR/$ARC_READABLEBOOKS" -d "$assets"/Books/
     echo "Mod: $ARC_READABLEBOOKS" >> "$SIGNATUREFILE"
 fi
 
 # -- Sound
 
 if [ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" ]; then
-    unzip "$ARC_MIDNIGHTPRINCESOUNDSCAPE" -d "$assets"/
+    unzip "$SOURCEDIR/$ARC_MIDNIGHTPRINCESOUNDSCAPE" -d "$assets"/
     echo "Mod: $ARC_MIDNIGHTPRINCESOUNDSCAPE" >> "$SIGNATUREFILE"
 fi
 
 if [ "$DFREMASTEREDMUSIC" = "Y" ]; then
-    unrar x "$ARC_DFREMASTEREDMUSIC" "$assets"/Sound/
+    unrar x "$SOURCEDIR/$ARC_DFREMASTEREDMUSIC" "$assets"/Sound/
     echo "Mod: $ARC_DFREMASTEREDMUSIC" >> "$SIGNATUREFILE"
 fi
 
