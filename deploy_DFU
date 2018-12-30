@@ -87,6 +87,9 @@ ARC_DAGGERFONT=FONT0003-SDF.zip
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
 ARC_HANDPAINTEDMODELS="Handpainted models v142b.zip"
 
+# Fancy Indicators https://forums.dfworkshop.net/viewtopic.php?f=22&t=1671
+ARC_FANCYINDICATORS=FancyVitalIndicators.zip
+
 # Compass texture https://forums.dfworkshop.net/viewtopic.php?f=14&t=630
 ARC_COMPASSTEXTURES=CompassTextures.7z
 
@@ -246,6 +249,11 @@ fi
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
     unzip -j "$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
     echo "Mod: $ARC_HANDPAINTEDMODELS" >> "$SIGNATUREFILE"
+fi
+
+if [ "$FANCYINDICATORS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_FANCYINDICATORS" -d "$assets"/Textures/
+    echo "Mod: $ARC_FANCYINDICATORS" >> "$SIGNATUREFILE"
 fi
 
 if [ "$COMPASSTEXTURES" = "Y" ]; then
