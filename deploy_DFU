@@ -151,7 +151,7 @@ ARC_QUESTPACK1=Quest_Pack_1.zip
 ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888&hilit=archeologists&start=80
-ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.4.zip
+ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.5.zip
 
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
@@ -329,7 +329,7 @@ fi
 if [ "$LOADINGSCREEN" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$TEMP" "${ARC_LOADINGSCREEN%.zip}"/StreamingAssets/Mods/LoadingScreen/'*'
     mv -v "$TEMP/${ARC_LOADINGSCREEN%.zip}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
-    unzip "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.zip}"/OS-specific/Linux/loadingscreen.dfmod
+    unzip -j "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.zip}"/OS-specific/Linux/loadingscreen.dfmod
     echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
 
     if [ "$LOADINGSCREENOBLIVION" = "Y" ]; then
