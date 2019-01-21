@@ -67,7 +67,7 @@ esac
 ARC_REMASTER30=Textures_3.0.rar
 
 # D.R.E.A.M. https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168
-ARC_DREAM=DREAM.rar
+ARC_DREAM='DREAM Linux.rar'
 
 # Daggerfall Textures XL https://forums.dfworkshop.net/viewtopic.php?f=27&t=1176
 ARC_TEXTURESXL=Textures.zip
