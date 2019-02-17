@@ -37,7 +37,7 @@ USAGE
 
 When this is done, run
 
-  $ deploy_DFU <target_directory>
+    $ deploy_DFU <target_directory>
 
 <target directory> should be either a directory that doesn't exist
 yet, or a previous installation done by deploy_DFU, in which case the
@@ -55,4 +55,4 @@ ADVANCED USAGE
 You can have several configuration files, for example for testing
 purposes. All you need to do is call deploy_DFU like:
 
-  $ deploy_DFU -f <config file> <target directory>
+    $ deploy_DFU -f <config file> <target directory>
