@@ -184,17 +184,22 @@ done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
 check_conflicting() {
+    local reason=$1
+    shift
     local conflicting=()
     for option in "$@"; do
         [ "${!option}" = "Y" ] && conflicting+=("$option")
     done
-    [ ${#conflicting[*]} -gt 1 ] && fatal "You selected conflicting options: ${conflicting[*]}"
+    [ ${#conflicting[*]} -gt 1 ] && fatal "You selected conflicting options ($reason): ${conflicting[*]}"
     return 0
 }
 
 # Textures
 # Not TOPAZTEXTURES here since it's not a full overhaul
-check_conflicting DREAM REMASTER30 TEXTURESXL
+check_conflicting "Texture overhauls" DREAM REMASTER30 TEXTURESXL
+
+check_conflicting "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
+check_conflicting "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
 check_conflicting MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
