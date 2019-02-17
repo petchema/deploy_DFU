@@ -202,7 +202,7 @@ check_conflicting "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
 check_conflicting "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
-check_conflicting MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
+check_conflicting "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
 
 # -- Let's go
 
