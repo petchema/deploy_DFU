@@ -397,12 +397,19 @@ if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
 fi
 
 if [ "$USE_HACKS" = "Y" ]; then
+forcesize () {
+    echo "<?xml version=\"1.0\"?>
+<info>
+<width>$2</width>
+<height>$3</height>
+</info>" > "$assets/Textures/$1.xml"
+}
+    
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
-    if [[ "$CONVENIENTCLOCK" = "Y" && ( -e "$assets"/Textures/Img/COMPASS.IMG.xml || -e "$assets"/Textures/Img/COMPBOX.IMG.xml ) ]]; then
-	# Not compatible with resized compasses, revert to original one
-	for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.{png,xml}; do
-	    [ -e "$compassfile" ] && mv -v "$compassfile" "$compassfile.disabled"
-	done
+    if [ "$CONVENIENTCLOCK" = "Y" ]; then
+	# Not compatible with resized compasses, revert to original size
+        forcesize Img/COMPASS.IMG 322 14
+        forcesize Img/COMPBOX.IMG 69 17
     fi
 fi
 
