@@ -39,7 +39,7 @@ When this is done, run
 
     $ deploy_DFU <target_directory>
 
-<target directory> should be either a directory that doesn't exist
+"target directory" should be either a directory that doesn't exist
 yet, or a previous installation done by deploy_DFU, in which case the
 installation will be *replaced*.
 
