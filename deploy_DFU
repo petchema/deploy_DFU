@@ -51,7 +51,7 @@ case "$BASEGAME" in
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-148.zip
         ;;
     PREALPHA)
-        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-146.zip
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-149.zip
         ;;
     DEV)
         # zip containing everything below "build" subdirectory
