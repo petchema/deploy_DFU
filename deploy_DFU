@@ -112,7 +112,7 @@ ARC_DISTANTTERRAIN=DistantTerrain_2.6.0.zip
 ARC_REALGRASS=RealGrass_2.4.zip
 
 # Harvestable Crops https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
-ARC_HARVESTABLECROPS=HarvestableCrops_v0.2_.7z
+ARC_HARVESTABLECROPS=HarvestableCrops_0.3.zip
 
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
 ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
@@ -312,7 +312,7 @@ if [ "$REALGRASS" = "Y" ]; then
 fi
 
 if [ "$HARVESTABLECROPS" = "Y" ]; then
-    7z e "$SOURCEDIR/$ARC_HARVESTABLECROPS" "${ARC_HARVESTABLECROPS%.7z}"/Linux/harvestablecrops.dfmod -o"$assets"/Mods/
+    unzip -j "$SOURCEDIR/$ARC_HARVESTABLECROPS" "${ARC_HARVESTABLECROPS%.zip}"/Linux/harvestablecrops.dfmod -d "$assets"/Mods/
     echo "Mod: $ARC_HARVESTABLECROPS" >> "$SIGNATUREFILE"
 fi
 
