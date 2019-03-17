@@ -75,6 +75,9 @@ ARC_TEXTURESXL=Textures.zip
 # TOPAZ AI Textures https://forums.dfworkshop.net/viewtopic.php?f=14&t=1642
 ARC_TOPAZTEXTURES=TexturesFreak2121.7z
 
+# Trees of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=22&t=1826
+ARC_TREESOFDAGGERFALL="Trees Of Daggerfall 0.8b.zip"
+
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
 
@@ -240,8 +243,13 @@ if [ "$TEXTURESXL" = "Y" ]; then
 fi
 
 if [ "$TOPAZTEXTURES" = "Y" ]; then
-   7z x "$SOURCEDIR/$ARC_TOPAZTEXTURES" -o"$assets"/ -aoa
-   echo "Mod: $ARC_TOPAZTEXTURES" >> "$SIGNATUREFILE"
+    7z x "$SOURCEDIR/$ARC_TOPAZTEXTURES" -o"$assets"/ -aoa
+    echo "Mod: $ARC_TOPAZTEXTURES" >> "$SIGNATUREFILE"
+fi
+
+if [ "$TREESOFDAGGERFALL" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_TREESOFDAGGERFALL" -d "$assets"/Mods "StandaloneLinux/trees of daggerfall.dfmod"
+    echo "Mod: $ARC_TREESOFDAGGERFALL" >> "$SIGNATUREFILE"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
