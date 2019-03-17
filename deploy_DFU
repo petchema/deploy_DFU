@@ -99,8 +99,8 @@ ARC_FANCYINDICATORS=FancyVitalIndicators.zip
 # Compass texture https://forums.dfworkshop.net/viewtopic.php?f=14&t=630
 ARC_COMPASSTEXTURES=CompassTextures.7z
 
-# Recreated Travel map https://forums.dfworkshop.net/viewtopic.php?f=22&t=1804&p=21721#p21721
-ARC_RECREATEDTRAVELMAP=TRAV0I00.IMG.png
+# Daggerfall World Map https://forums.dfworkshop.net/viewtopic.php?f=22&t=1804
+ARC_DAGGERFALLWORLDMAP="Daggerfall World Map.zip"
 
 # Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=27&t=1542
 ARC_ENHANCEDSKY=EnhancedSky_2.1.1.zip
@@ -291,9 +291,9 @@ if [ "$COMPASSTEXTURES" = "Y" ]; then
     echo "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)" >> "$SIGNATUREFILE"
 fi
 
-if [ "$RECREATEDTRAVELMAP" = "Y" ]; then
-    cp "$SOURCEDIR/$ARC_RECREATEDTRAVELMAP" "$assets"/Textures/Img/
-    echo "Mod: $ARC_RECREATEDTRAVELMAP" >> "$SIGNATUREFILE"
+if [ "$DAGGERFALLWORLDMAP" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_DAGGERFALLWORLDMAP" -d "$assets"/Mods "StandaloneLinux/daggerfall world map.dfmod"
+    echo "Mod: $ARC_DAGGERFALLWORLDMAP" >> "$SIGNATUREFILE"
 fi
 
 if [ "$ENHANCEDSKY" = "Y" ]; then
