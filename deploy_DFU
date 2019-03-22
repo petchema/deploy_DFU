@@ -78,6 +78,12 @@ ARC_TOPAZTEXTURES=TexturesFreak2121.7z
 # Trees of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=22&t=1826
 ARC_TREESOFDAGGERFALL="Trees Of Daggerfall 0.8b.zip"
 
+# HD 1st Person Weapon Textures https://forums.dfworkshop.net/viewtopic.php?f=27&t=1612
+ARC_HDWEAPONSSWORDS=CifRci_Broadsword.zip
+ARC_HDWEAPONSUNARMED=CifRci_Unarmed.zip
+ARC_HDWEAPONSWARHAMMER=CifRci_Warhammer.zip
+ARC_HDWEAPONSMACE=CifRci_Mace.zip
+
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
 
@@ -250,6 +256,30 @@ fi
 if [ "$TREESOFDAGGERFALL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TREESOFDAGGERFALL" -d "$assets"/Mods "StandaloneLinux/trees of daggerfall.dfmod"
     echo "Mod: $ARC_TREESOFDAGGERFALL" >> "$SIGNATUREFILE"
+fi
+
+if [ "$HDWEAPONSSWORDS" = "Y" ]; then
+    mkdir -p "$assets"/Textures/CifRci
+    unzip -o "$SOURCEDIR/$ARC_HDWEAPONSSWORDS" -d "$assets"/Textures/CifRci
+    echo "Mod: $ARC_HDWEAPONSSWORDS" >> "$SIGNATUREFILE"
+fi
+
+if [ "$HDWEAPONSUNARMED" = "Y" ]; then
+    mkdir -p "$assets"/Textures/CifRci
+    unzip -o "$SOURCEDIR/$ARC_HDWEAPONSUNARMED" -d "$assets"/Textures/CifRci
+    echo "Mod: $ARC_HDWEAPONSUNARMED" >> "$SIGNATUREFILE"
+fi
+
+if [ "$HDWEAPONSWARHAMMER" = "Y" ]; then
+    mkdir -p "$assets"/Textures/CifRci
+    unzip -o "$SOURCEDIR/$ARC_HDWEAPONSWARHAMMER" -d "$assets"/Textures/CifRci
+    echo "Mod: $ARC_HDWEAPONSWARHAMMER" >> "$SIGNATUREFILE"
+fi
+
+if [ "$HDWEAPONSMACE" = "Y" ]; then
+    mkdir -p "$assets"/Textures/CifRci
+    unzip -o "$SOURCEDIR/$ARC_HDWEAPONSMACE" -d "$assets"/Textures/CifRci
+    echo "Mod: $ARC_HDWEAPONSMACE" >> "$SIGNATUREFILE"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
