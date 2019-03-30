@@ -83,6 +83,7 @@ ARC_HDWEAPONSSWORDS=CifRci_Broadsword.zip
 ARC_HDWEAPONSUNARMED=CifRci_Unarmed.zip
 ARC_HDWEAPONSWARHAMMER=CifRci_Warhammer.zip
 ARC_HDWEAPONSMACE=CifRci_Mace.zip
+ARC_HDWEAPONSFLAIL=CifRci_Flail.zip
 
 # Bright Exit https://forums.dfworkshop.net/viewtopic.php?f=27&t=1168&start=100#p16197
 ARC_BRIGHTEXIT=095_0-0_Emission.png
@@ -280,6 +281,12 @@ if [ "$HDWEAPONSMACE" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSMACE" -d "$assets"/Textures/CifRci
     echo "Mod: $ARC_HDWEAPONSMACE" >> "$SIGNATUREFILE"
+fi
+
+if [ "$HDWEAPONSFLAIL" = "Y" ]; then
+    mkdir -p "$assets"/Textures/CifRci
+    unzip -o "$SOURCEDIR/$ARC_HDWEAPONSFLAIL" -d "$assets"/Textures/CifRci
+    echo "Mod: $ARC_HDWEAPONSFLAIL" >> "$SIGNATUREFILE"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
