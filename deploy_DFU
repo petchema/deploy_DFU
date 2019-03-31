@@ -116,7 +116,7 @@ ARC_ENHANCEDSKY=EnhancedSky_2.1.1.zip
 ARC_DISTANTTERRAIN=DistantTerrain_2.6.0.zip
 
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
-ARC_MOUNTAINSHILLS="Mountain And Hills 1.01.zip"
+ARC_MOUNTAINSHILLS="Mountain And Hills 1.02.zip"
 
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 ARC_REALGRASS=RealGrass_2.4.zip
@@ -347,7 +347,7 @@ if [ "$DISTANTTERRAIN" = "Y" ]; then
 fi
 
 if [ "$MOUNTAINSHILLS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "StandaloneLinux/mountains and hills.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "${ARC_MOUNTAINSHILLS%.zip}/mountains and hills.dfmod"
     echo "Mod: $ARC_MOUNTAINSHILLS" >> "$SIGNATUREFILE"
 fi
 
