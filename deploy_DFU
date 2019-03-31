@@ -210,25 +210,41 @@ done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
 
 check_conflicting() {
-    local reason=$1
-    shift
+    local stage=$1
+    local reason=$2
+    shift 2
     local conflicting=()
     for option in "$@"; do
         [ "${!option}" = "Y" ] && conflicting+=("$option")
     done
-    [ ${#conflicting[*]} -gt 1 ] && fatal "You selected conflicting options ($reason): ${conflicting[*]}"
+    if [ ${#conflicting[*]} -gt 1 ]; then
+        case "$stage" in
+            INSTALL)
+                fatal "You selected conflicting options ($reason): ${conflicting[*]}"
+                ;;
+            RUNTIME)
+                warn "Only enable one of those options at a time ($reason): ${conflicting[*]}"
+                ;;
+            *)
+                fatal "Unknown stage \`$stage'"
+                ;;
+                esac
+    fi
     return 0
 }
 
 # Textures
 # Not TOPAZTEXTURES here since it's not a full overhaul
-check_conflicting "Texture overhauls" DREAM REMASTER30 TEXTURESXL
+check_conflicting INSTALL "Texture overhauls" DREAM REMASTER30 TEXTURESXL
 
-check_conflicting "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
-check_conflicting "DREAM contains BrightExit"  DREAM BRIGHTEXIT
+check_conflicting INSTALL "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
+check_conflicting INSTALL "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
-check_conflicting "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
+check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
+
+# Terrain generators
+check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS
 
 # -- Let's go
 
