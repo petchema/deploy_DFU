@@ -8,8 +8,16 @@ self=$(basename "$0")
 version="1.2"
 
 fatal() {
-    echo "$self: $1" 1>&2
+    echo "$self: [FATAL] $1" 1>&2
     exit 1
+}
+
+warn() {
+    echo "$self: [WARN] $1" 1>&2
+}
+
+info() {
+    echo "$self: [INFO] $1"
 }
 
 usage() {
@@ -176,6 +184,8 @@ ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
 # -- preflight checks
 
+info "Installation preflight checks..."
+
 check_available() {
     command -v "$1" > /dev/null 2>&1 || fatal "\`$1' command not found"
 }
@@ -222,104 +232,111 @@ check_conflicting "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
 
 # -- Let's go
 
+info "Start installation under \`$TARGETDIR'"
+
 SIGNATUREFILE="$TARGETDIR/.deploy_DFU.log"
+# Use signature file as an install log
+install_log() {
+    echo "$1" >> "$SIGNATUREFILE"
+}
+
 if [ -d "$TARGETDIR" ]; then
     [ -e "$SIGNATUREFILE" ] || fatal "not replacing \`$TARGETDIR' we didn't create"
     rm -rf "$TARGETDIR"
 fi
 mkdir -p "$TARGETDIR"
-echo "Install script: $self $version" > "$SIGNATUREFILE"
+install_log "Install script: $self $version"
 
 unzip "$SOURCEDIR/$ARC_BASEGAME" -d "$TARGETDIR"
-echo "Base game: $ARC_BASEGAME ($BASEGAME)" >> "$SIGNATUREFILE"
-echo "Options: USE_HACKS=$USE_HACKS" >> "$SIGNATUREFILE"
+install_log "Base game: $ARC_BASEGAME ($BASEGAME)"
+install_log "Options: USE_HACKS=$USE_HACKS"
 assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 
 # -- Eye candy
 
 if [ "$DREAM" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_DREAM" "$assets"/Mods/
-    echo "Mod: $ARC_DREAM" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DREAM"
 fi
 
 if [ "$REMASTER30" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_REMASTER30" "$assets"/
-    echo "Mod: $ARC_REMASTER30" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_REMASTER30"
 fi
 
 if [ "$TEXTURESXL" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_TEXTURESXL" -d "$assets"/
-    echo "Mod: $ARC_TEXTURESXL" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_TEXTURESXL"
 fi
 
 if [ "$TOPAZTEXTURES" = "Y" ]; then
     7z x "$SOURCEDIR/$ARC_TOPAZTEXTURES" -o"$assets"/ -aoa
-    echo "Mod: $ARC_TOPAZTEXTURES" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_TOPAZTEXTURES"
 fi
 
 if [ "$TREESOFDAGGERFALL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TREESOFDAGGERFALL" -d "$assets"/Mods "StandaloneLinux/trees of daggerfall.dfmod"
-    echo "Mod: $ARC_TREESOFDAGGERFALL" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_TREESOFDAGGERFALL"
 fi
 
 if [ "$HDWEAPONSSWORDS" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSSWORDS" -d "$assets"/Textures/CifRci
-    echo "Mod: $ARC_HDWEAPONSSWORDS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HDWEAPONSSWORDS"
 fi
 
 if [ "$HDWEAPONSUNARMED" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSUNARMED" -d "$assets"/Textures/CifRci
-    echo "Mod: $ARC_HDWEAPONSUNARMED" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HDWEAPONSUNARMED"
 fi
 
 if [ "$HDWEAPONSWARHAMMER" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSWARHAMMER" -d "$assets"/Textures/CifRci
-    echo "Mod: $ARC_HDWEAPONSWARHAMMER" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HDWEAPONSWARHAMMER"
 fi
 
 if [ "$HDWEAPONSMACE" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSMACE" -d "$assets"/Textures/CifRci
-    echo "Mod: $ARC_HDWEAPONSMACE" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HDWEAPONSMACE"
 fi
 
 if [ "$HDWEAPONSFLAIL" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSFLAIL" -d "$assets"/Textures/CifRci
-    echo "Mod: $ARC_HDWEAPONSFLAIL" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HDWEAPONSFLAIL"
 fi
 
 if [ "$BRIGHTEXIT" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_BRIGHTEXIT" "$assets"/Textures/
-    echo "Mod: $ARC_BRIGHTEXIT" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_BRIGHTEXIT"
 fi
 
 if [ "$DISCRETECROSSHAIR" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_DISCRETECROSSHAIR" "$assets"/Textures/
-    echo "Mod: $ARC_DISCRETECROSSHAIR" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DISCRETECROSSHAIR"
 fi
 
 if [ "$CHARCOALGHOSTS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_CHARCOALGHOSTS" -d "$assets"/Textures/
-    echo "Mod: $ARC_CHARCOALGHOSTS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_CHARCOALGHOSTS"
 fi
 
 if [ "$DAGGERFONT" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_DAGGERFONT" -d "$assets"/Fonts/
-    echo "Mod: $ARC_DAGGERFONT" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DAGGERFONT"
 fi
 
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/StandaloneLinux/*.dfmod"
-    echo "Mod: $ARC_HANDPAINTEDMODELS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HANDPAINTEDMODELS"
 fi
 
 if [ "$FANCYINDICATORS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_FANCYINDICATORS" -d "$assets"/
-    echo "Mod: $ARC_FANCYINDICATORS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_FANCYINDICATORS"
 fi
 
 if [ "$COMPASSTEXTURES" = "Y" ]; then
@@ -328,42 +345,42 @@ if [ "$COMPASSTEXTURES" = "Y" ]; then
     for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.xml; do
 	[ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
     done
-    echo "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)"
 fi
 
 if [ "$DAGGERFALLWORLDMAP" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_DAGGERFALLWORLDMAP" -d "$assets"/Mods "StandaloneLinux/daggerfall world map.dfmod"
-    echo "Mod: $ARC_DAGGERFALLWORLDMAP" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DAGGERFALLWORLDMAP"
 fi
 
 if [ "$ENHANCEDSKY" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux/enhanced sky.dfmod"
-    echo "Mod: $ARC_ENHANCEDSKY" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_ENHANCEDSKY"
 fi
 
 if [ "$DISTANTTERRAIN" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux/distant terrain.dfmod"
-    echo "Mod: $ARC_DISTANTTERRAIN" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DISTANTTERRAIN"
 fi
 
 if [ "$MOUNTAINSHILLS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "${ARC_MOUNTAINSHILLS%.zip}/mountains and hills.dfmod"
-    echo "Mod: $ARC_MOUNTAINSHILLS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_MOUNTAINSHILLS"
 fi
 
 if [ "$REALGRASS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_REALGRASS" "${ARC_REALGRASS%.zip}"/Mod/Linux/realgrass.dfmod -d "$assets"/Mods/
-    echo "Mod: $ARC_REALGRASS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_REALGRASS"
 fi
 
 if [ "$HARVESTABLECROPS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_HARVESTABLECROPS" "${ARC_HARVESTABLECROPS%.zip}"/Linux/harvestablecrops.dfmod -d "$assets"/Mods/
-    echo "Mod: $ARC_HARVESTABLECROPS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_HARVESTABLECROPS"
 fi
 
 if [ "$VIBRANTWIND" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
-    echo "Mod: $ARC_VIBRANTWIND" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_VIBRANTWIND"
 fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
@@ -374,92 +391,92 @@ if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
         unzip "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$TEMP" RealtimeReflections_textures.zip
         unzip "$TEMP"/RealtimeReflections_textures.zip -d "$assets"/Textures
     fi
-    echo "Mod: $ARC_REALTIMEREFLECTIONS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_REALTIMEREFLECTIONS"
 fi
 
 if [ "$VILLAGERIMMERSION" = "Y" ]; then
     unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Textures/
-    echo "Mod: $ARC_VILLAGERIMMERSION" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_VILLAGERIMMERSION"
 fi
 
 if [ "$POSTPROCESSING" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_POSTPROCESSING" -d "$assets"/Mods "${ARC_POSTPROCESSING%.zip}"/Linux/postprocessing.dfmod
-    echo "Mod: $ARC_POSTPROCESSING" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_POSTPROCESSING"
 fi
 
 if [ "$CONVENIENTCLOCK" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
     # unzip "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$TEMP" "\[OPTIONAL\] TEXTURE OVERRIDE/*"
     # cp -rv "$TEMP/[OPTIONAL] TEXTURE OVERRIDE/StreamingAssets/Textures/Clock" "$assets"/Textures/
-    echo "Mod: $ARC_CONVENIENTCLOCK" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_CONVENIENTCLOCK"
 fi
 
 if [ "$LOADINGSCREEN" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$TEMP" "${ARC_LOADINGSCREEN%.zip}"/StreamingAssets/Mods/LoadingScreen/'*'
     mv -v "$TEMP/${ARC_LOADINGSCREEN%.zip}"/StreamingAssets/Mods/LoadingScreen "$assets"/Mods/
     unzip -j "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$assets"/Mods/LoadingScreen/ "${ARC_LOADINGSCREEN%.zip}"/OS-specific/Linux/loadingscreen.dfmod
-    echo "Mod: $ARC_LOADINGSCREEN" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_LOADINGSCREEN"
 
     if [ "$LOADINGSCREENOBLIVION" = "Y" ]; then
 	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
-	echo "Mod: $ARC_LOADINGSCREENOBLIVION" >> "$SIGNATUREFILE"
+	install_log "Mod: $ARC_LOADINGSCREENOBLIVION"
     fi
 fi
 
 if [ "$READABLEBOOKS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_READABLEBOOKS" -d "$assets"/Books/
-    echo "Mod: $ARC_READABLEBOOKS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_READABLEBOOKS"
 fi
 
 # -- Sound
 
 if [ "$MIDNIGHTPRINCESOUNDSCAPE" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_MIDNIGHTPRINCESOUNDSCAPE" -d "$assets"/
-    echo "Mod: $ARC_MIDNIGHTPRINCESOUNDSCAPE" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_MIDNIGHTPRINCESOUNDSCAPE"
 fi
 
 if [ "$DFREMASTEREDMUSIC" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_DFREMASTEREDMUSIC" "$assets"/Sound/
-    echo "Mod: $ARC_DFREMASTEREDMUSIC" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_DFREMASTEREDMUSIC"
 fi
 
 if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
       mkdir -p "$assets"/Sound/
       unzip "$SOURCEDIR/$ARC_SOUNDCLIPSMIXDOWN" -d "$assets"/Sound/
-      echo "Mod: $ARC_SOUNDCLIPSMIXDOWN" >> "$SIGNATUREFILE"
+      install_log "Mod: $ARC_SOUNDCLIPSMIXDOWN"
 fi
 
 # -- Gameplay
 
 if [ "$TEDIOUSTRAVEL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TEDIOUSTRAVEL" -d "$assets"/Mods/ StandaloneLinux/tedioustravel.dfmod
-    echo "Mod: $ARC_TEDIOUSTRAVEL" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_TEDIOUSTRAVEL"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
     #unzip -j "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/QuestPacks/ Kamer/WarmAshes/WAQ00.txt
     unzip "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/Quests/ Kamer/WarmAshes/WAQ01.txt Kamer/WarmAshes/WAQ02.txt Kamer/WarmAshes/WAQ03.txt Kamer/WarmAshes/WAQ04.txt
     unzip "$SOURCEDIR/$WARMASHES_QUESTLIST" -d "$assets"/Quests/Kamer/WarmAshes/
-    echo "Mod: $ARC_WARMASHES" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_WARMASHES"
 fi
 
 if [ "$QUESTPACK1" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
-    echo "Mod: $ARC_QUESTPACK1" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_QUESTPACK1"
 fi
 if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
-    echo "Mod: $ARC_QUESTPACK1PERPETUALS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_QUESTPACK1PERPETUALS"
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ archaeologists.dfmod
-    echo "Mod: $ARC_ARCHEOLOGISTSGUILD" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_ARCHEOLOGISTSGUILD"
 fi
 
 if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_PERSISTENTDUNGEONS" "$assets"/Mods/
-    echo "Mod: $ARC_PERSISTENTDUNGEONS" >> "$SIGNATUREFILE"
+    install_log "Mod: $ARC_PERSISTENTDUNGEONS"
 fi
 
 if [ "$USE_HACKS" = "Y" ]; then
@@ -479,6 +496,6 @@ forcesize () {
     fi
 fi
 
-echo "Installation: successful" >> "$SIGNATUREFILE"
-echo "Installed successfully under \`$TARGETDIR'"
+install_log "Installation: successful"
+info "Installed successfully under \`$TARGETDIR'"
 exit 0
