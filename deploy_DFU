@@ -106,7 +106,7 @@ ARC_CHARCOALGHOSTS=CharcoalGhosts1.1.zip
 ARC_DAGGERFONT=FONT0003-SDF.zip
 
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
-ARC_HANDPAINTEDMODELS="Handpainted v157.zip"
+ARC_HANDPAINTEDMODELS="Handpainted Models v183 - Linux.zip"
 
 # Fancy Indicators https://forums.dfworkshop.net/viewtopic.php?f=22&t=1671
 ARC_FANCYINDICATORS=FancyVitalIndicators.zip
@@ -346,7 +346,7 @@ if [ "$DAGGERFONT" = "Y" ]; then
 fi
 
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "StandaloneLinux/*.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_HANDPAINTEDMODELS" -d "$assets"/Mods "${ARC_HANDPAINTEDMODELS%.zip}/*.dfmod"
     install_log "Mod: $ARC_HANDPAINTEDMODELS"
 fi
 
