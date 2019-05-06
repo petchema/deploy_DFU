@@ -199,12 +199,12 @@ missing_options=()
 for archive in ${!ARC_*}; do
     option="${archive#ARC_}"
     if [ "${!option}" ]; then
-	if [ "${!option}" != "N" ]; then
-	    echo "Testing \`${!archive}' presence..."
-	    [ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
-	fi
+        if [ "${!option}" != "N" ]; then
+            echo "Testing \`${!archive}' presence..."
+            [ -e "$SOURCEDIR/${!archive}" ] || fatal "archive \`$SOURCEDIR/${!archive}' not found, aborting"
+        fi
     else
-	missing_options+=("$option")
+        missing_options+=("$option")
     fi
 done
 [ ${#missing_options} -gt 0 ] && fatal "Your configuration file is missing options: ${missing_options[*]}"
@@ -228,7 +228,7 @@ check_conflicting() {
             *)
                 fatal "Unknown stage \`$stage'"
                 ;;
-                esac
+        esac
     fi
     return 0
 }
@@ -359,7 +359,7 @@ if [ "$COMPASSTEXTURES" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_COMPASSTEXTURES" "[MOD] CompassTextures/$COMPASSTEXTURE/*" -o"$assets"/Textures/Img/ -aoa
     # Those compasses have standard size
     for compassfile in "$assets"/Textures/Img/COMP{ASS,BOX}.IMG.xml; do
-	[ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
+        [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
     done
     install_log "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)"
 fi
@@ -434,8 +434,8 @@ if [ "$LOADINGSCREEN" = "Y" ]; then
     install_log "Mod: $ARC_LOADINGSCREEN"
 
     if [ "$LOADINGSCREENOBLIVION" = "Y" ]; then
-	unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
-	install_log "Mod: $ARC_LOADINGSCREENOBLIVION"
+        unrar x -y "$SOURCEDIR/$ARC_LOADINGSCREENOBLIVION" "$assets"/Mods/LoadingScreen/Images/
+        install_log "Mod: $ARC_LOADINGSCREENOBLIVION"
     fi
 fi
 
@@ -457,9 +457,9 @@ if [ "$DFREMASTEREDMUSIC" = "Y" ]; then
 fi
 
 if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
-      mkdir -p "$assets"/Sound/
-      unzip "$SOURCEDIR/$ARC_SOUNDCLIPSMIXDOWN" -d "$assets"/Sound/
-      install_log "Mod: $ARC_SOUNDCLIPSMIXDOWN"
+    mkdir -p "$assets"/Sound/
+    unzip "$SOURCEDIR/$ARC_SOUNDCLIPSMIXDOWN" -d "$assets"/Sound/
+    install_log "Mod: $ARC_SOUNDCLIPSMIXDOWN"
 fi
 
 # -- Gameplay
@@ -503,10 +503,10 @@ forcesize () {
 <height>$3</height>
 </info>" > "$assets/Textures/$1.xml"
 }
-    
+
     # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
     if [ "$CONVENIENTCLOCK" = "Y" ]; then
-	# Not compatible with resized compasses, revert to original size
+        # Not compatible with resized compasses, revert to original size
         forcesize Img/COMPASS.IMG 322 14
         forcesize Img/COMPBOX.IMG 69 17
     fi
