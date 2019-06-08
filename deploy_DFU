@@ -184,6 +184,9 @@ ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.5.zip
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
+# Daggerfall Autosave https://forums.dfworkshop.net/viewtopic.php?f=14&t=2151
+ARC_AUTOSAVE=df-unity.Autosave-master.zip
+
 # -- preflight checks
 
 info "Installation preflight checks..."
@@ -507,6 +510,11 @@ fi
 if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_PERSISTENTDUNGEONS" "$assets"/Mods/
     install_log "Mod: $ARC_PERSISTENTDUNGEONS"
+fi
+
+if [ "$AUTOSAVE" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_AUTOSAVE" -d "$assets"/Mods/Autosave "${ARC_AUTOSAVE%.zip}/StandaloneLinux/*"
+    install_log "Mod: $ARC_AUTOSAVE"
 fi
 
 if [ "$USE_HACKS" = "Y" ]; then
