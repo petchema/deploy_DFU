@@ -187,7 +187,7 @@ ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.5.zip
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
 # Daggerfall Autosave https://forums.dfworkshop.net/viewtopic.php?f=14&t=2151
-ARC_AUTOSAVE=df-unity.Autosave-master.zip
+ARC_AUTOSAVE=df-unity.Autosave-Autosave-v0.9.0b.zip
 
 # -- preflight checks
 
