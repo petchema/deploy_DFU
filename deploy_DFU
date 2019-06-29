@@ -139,6 +139,9 @@ ARC_HARVESTABLECROPS=HarvestableCrops_0.3.zip
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
 ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
 
+# Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
+ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
+
 # Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
 ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.2.zip
 
@@ -416,6 +419,11 @@ fi
 if [ "$VIBRANTWIND" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
     install_log "Mod: $ARC_VIBRANTWIND"
+fi
+
+if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_BIRDSINDAGGERFALL" "StandaloneLinux/birds in daggerfall.dfmod" -d "$assets"/Mods/
+    install_log "Mod: $ARC_BIRDSINDAGGERFALL"
 fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
