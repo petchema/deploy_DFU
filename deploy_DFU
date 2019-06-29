@@ -56,10 +56,12 @@ source "$configfile"
 # Base game https://www.dfworkshop.net/projects/daggerfall-unity/live-builds/
 case "$BASEGAME" in
     STABLE)
+        # Once upon a time, DFU had "stable" branch releases
+        # That will come back with 1.0, I guess
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-148.zip
         ;;
     PREALPHA)
-        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-156.zip
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-160.zip
         ;;
     DEV)
         # zip containing everything below "build" subdirectory
