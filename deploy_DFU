@@ -146,7 +146,7 @@ ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.2.zip
 
 # Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-ARC_VILLAGERIMMERSION=VIO-V2.rar
+ARC_VILLAGERIMMERSION=VIO-V3.rar
 
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
 ARC_POSTPROCESSING=PostProcessing_1.0.1.zip
@@ -438,7 +438,7 @@ if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
 fi
 
 if [ "$VILLAGERIMMERSION" = "Y" ]; then
-    unrar x -y "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Textures/
+    unrar e "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Mods/ VIO_V3/ViO_v3_Linux.dfmod
     install_log "Mod: $ARC_VILLAGERIMMERSION"
 fi
 
