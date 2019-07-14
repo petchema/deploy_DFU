@@ -281,7 +281,9 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 # -- Eye candy
 
 if [ "$DREAM" = "Y" ]; then
-    unrar x "$SOURCEDIR/$ARC_DREAM" "$assets"/ 'Mods/*' 'SpellIcons/*'
+    # Exclude cinematics, VideoPlayer used by Daggerfall Unity does not support
+    # MP4s under Linux https://forums.dfworkshop.net/viewtopic.php?f=5&t=1658&p=18923#p18928
+    unrar x -x'Mods/dream - cinematics.dfmod' "$SOURCEDIR/$ARC_DREAM" "$assets"/ 'Mods/*' 'SpellIcons/*'
     install_log "Mod: $ARC_DREAM"
 fi
 
