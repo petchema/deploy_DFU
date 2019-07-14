@@ -174,9 +174,10 @@ ARC_SOUNDCLIPSMIXDOWN=SoundClips-1.3.zip
 # Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
 ARC_TEDIOUSTRAVEL=TediousTravel-0.4.1.zip
 
-# Warm Ashes: Dangerous Dungeon Exteriors https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-ARC_WARMASHES="WarmAshesV2 (Fixed).rar"
-# Warm Ashes: Wilderness Encounters
+# Warm Ashes: Dangerous Dungeon Exteriors V2.5 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
+ARC_WARMASHES="WarmAshesV2.5.rar"
+
+# Warm Ashes: Wilderness Encounters V3 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087&start=90#p23111
 ARC_WILDERNESSENCOUNTERS=WAQ_Wilderness.rar
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
@@ -255,6 +256,9 @@ check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTERE
 
 # Terrain generators
 check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS
+
+# Random Encounters
+check_conflicting INSTALL "Random encounters" WARMASHES WILDERNESSENCOUNTERS
 
 # -- Let's go
 
