@@ -253,6 +253,9 @@ check_conflicting INSTALL "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
 check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC
+check_conflicting RUNTIME "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DREAM
+check_conflicting RUNTIME "Songs overhauls" DFREMASTEREDMUSIC DREAM
+check_conflicting RUNTIME "Sounds overhauls" SOUNDCLIPSMIXDOWN DREAM
 
 # Terrain generators
 check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS
