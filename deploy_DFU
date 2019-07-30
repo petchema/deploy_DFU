@@ -60,15 +60,15 @@ case "$BASEGAME" in
         # That will come back with 1.0, I guess
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-148.zip
         ;;
-    PREALPHA)
-        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-161.zip
+    ALPHA)
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-162.zip
         ;;
     DEV)
         # zip containing everything below "build" subdirectory
         ARC_BASEGAME=daggerfall-unity_linux64-dev.zip
         ;;
     *)
-        fatal "BASEGAME should be one of STABLE, PREALPHA or DEV"
+        fatal "BASEGAME should be one of STABLE, ALPHA or DEV"
 esac
 
 # Mods https://forums.dfworkshop.net/viewforum.php?f=27
