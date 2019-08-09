@@ -185,7 +185,6 @@ ARC_WILDERNESSENCOUNTERS=WAQ_Wilderness.rar
 
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 ARC_QUESTPACK1=Quest_Pack_1.zip
-ARC_QUESTPACK1PERPETUALS="Quest Pack 1 Perpetuals.zip"
 
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.6.zip
@@ -529,10 +528,6 @@ fi
 if [ "$QUESTPACK1" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
     install_log "Mod: $ARC_QUESTPACK1"
-fi
-if [ "$QUESTPACK1PERPETUALS" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1PERPETUALS" -d "$assets"/QuestPacks
-    install_log "Mod: $ARC_QUESTPACK1PERPETUALS"
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
