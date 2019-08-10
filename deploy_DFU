@@ -151,6 +151,9 @@ ARC_VILLAGERIMMERSION=VIO-V3.rar
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
 ARC_POSTPROCESSING=PostProcessing_1.0.1.zip
 
+# Improved Interior Lighting https://forums.dfworkshop.net/viewtopic.php?f=27&t=2479
+ARC_IMPROVEDLIGHTING="Improved Interior Lights.rar"
+
 # Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
 ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
 
@@ -458,6 +461,11 @@ fi
 if [ "$POSTPROCESSING" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_POSTPROCESSING" -d "$assets"/Mods "${ARC_POSTPROCESSING%.zip}"/Linux/postprocessing.dfmod
     install_log "Mod: $ARC_POSTPROCESSING"
+fi
+
+if [ "$IMPROVEDLIGHTING" = "Y" ]; then
+    unrar e "$SOURCEDIR/$ARC_IMPROVEDLIGHTING" "$assets"/Mods/ "improved interior lighting.dfmod"
+    install_log "Mod: $ARC_IMPROVEDLIGHTING"
 fi
 
 if [ "$CONVENIENTCLOCK" = "Y" ]; then
