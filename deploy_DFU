@@ -61,7 +61,7 @@ case "$BASEGAME" in
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-148.zip
         ;;
     ALPHA)
-        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-163.zip
+        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-166.zip
         ;;
     DEV)
         # zip containing everything below "build" subdirectory
@@ -297,7 +297,8 @@ assets="$TARGETDIR"/DaggerfallUnity_Data/StreamingAssets
 if [ "$DREAM" = "Y" ]; then
     # Exclude cinematics, VideoPlayer used by Daggerfall Unity does not support
     # MP4s under Linux https://forums.dfworkshop.net/viewtopic.php?f=5&t=1658&p=18923#p18928
-    unrar x -x'Mods/dream - cinematics.dfmod' "$SOURCEDIR/$ARC_DREAM" "$assets"/ 'Mods/*' 'SpellIcons/*'
+    # Also exclude settings for other mods, as bundling settings with mods could be an issue with 0.10.5+
+    unrar x -x'Mods/dream - cinematics.dfmod' -x'Mods/*.json' "$SOURCEDIR/$ARC_DREAM" "$assets"/ 'Mods/*' 'SpellIcons/*'
     install_log "Mod: $ARC_DREAM"
 fi
 

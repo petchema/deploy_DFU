@@ -47,8 +47,6 @@ If no issues are detected (missing archivers, missing or incorrect
 configuration file, missing archives,...) this should start installing
 Daggerfall Unity and the mods you selected:
 
-Remark: deploy_DFU does not currently backup mod settings.
-
 ADVANCED USAGE
 ==============
 
