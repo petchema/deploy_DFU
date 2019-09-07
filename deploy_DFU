@@ -180,6 +180,9 @@ ARC_SOUNDCLIPSMIXDOWN=SoundClips-1.3.zip
 # Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
 ARC_TEDIOUSTRAVEL=TediousTravel-0.4.1.zip
 
+# Roleplay Realism https://forums.dfworkshop.net/viewtopic.php?f=27&t=2298
+ARC_ROLEPLAYREALISM=RoleplayRealism-0.2.zip-16-0-2-1567807388.zip
+
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES="WarmAshesV3.0.2.rar"
 
@@ -522,6 +525,11 @@ fi
 if [ "$TEDIOUSTRAVEL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TEDIOUSTRAVEL" -d "$assets"/Mods/ StandaloneLinux/tedioustravel.dfmod
     install_log "Mod: $ARC_TEDIOUSTRAVEL"
+fi
+
+if [ "$ROLEPLAYREALISM" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_ROLEPLAYREALISM" -d "$assets"/Mods/
+    install_log "Mod: $ARC_ROLEPLAYREALISM"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
