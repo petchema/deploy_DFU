@@ -195,6 +195,9 @@ ARC_QUESTPACK1=Quest_Pack_1.zip
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.7.zip-14-0-7-1567807547.zip
 
+# Daggerfall Skyshards https://forums.dfworkshop.net/viewtopic.php?f=27&t=2746
+ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
+
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
@@ -550,6 +553,11 @@ fi
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ archaeologists.dfmod
     install_log "Mod: $ARC_ARCHEOLOGISTSGUILD"
+fi
+
+if [ "$SKYSHARDS" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_SKYSHARDS" -d "$assets"/Mods/ 'SkyShards/Linux/daggerfall skyshards.dfmod'
+    install_log "Mod: $ARC_SKYSHARDS"
 fi
 
 if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
