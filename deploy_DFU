@@ -155,7 +155,7 @@ ARC_POSTPROCESSING=PostProcessing_1.0.1.zip
 ARC_IMPROVEDLIGHTING="Improved Interior Lighting_1.0.2.rar"
 
 # Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
-ARC_CONVENIENTCLOCK="Convenient Clock 1.02.zip"
+ARC_CONVENIENTCLOCK="Convenient Clock-25-1-03-1569265588.zip"
 
 # Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
 ARC_LOADINGSCREEN=LoadingScreen_2.2.1.zip
@@ -479,7 +479,7 @@ if [ "$IMPROVEDLIGHTING" = "Y" ]; then
 fi
 
 if [ "$CONVENIENTCLOCK" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "StandaloneLinux/convenient clock.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$assets"/Mods "Linux/convenient clock.dfmod"
     # unzip "$SOURCEDIR/$ARC_CONVENIENTCLOCK" -d "$TEMP" "\[OPTIONAL\] TEXTURE OVERRIDE/*"
     # cp -rv "$TEMP/[OPTIONAL] TEXTURE OVERRIDE/StreamingAssets/Textures/Clock" "$assets"/Textures/
     install_log "Mod: $ARC_CONVENIENTCLOCK"
@@ -592,12 +592,12 @@ forcesize () {
 </info>" > "$assets/Textures/$1.xml"
 }
 
-    # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
-    if [ "$CONVENIENTCLOCK" = "Y" ]; then
-        # Not compatible with resized compasses, revert to original size
-        forcesize Img/COMPASS.IMG 322 14
-        forcesize Img/COMPBOX.IMG 69 17
-    fi
+    # # https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021&p=14696#p14696
+    # if [ "$CONVENIENTCLOCK" = "Y" ]; then
+    #     # Not compatible with resized compasses, revert to original size
+    #     forcesize Img/COMPASS.IMG 322 14
+    #     forcesize Img/COMPBOX.IMG 69 17
+    # fi
 fi
 
 install_log "Installation: successful"
