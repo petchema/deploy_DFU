@@ -180,6 +180,9 @@ ARC_SOUNDCLIPSMIXDOWN=SoundClips-1.3.zip
 # Tedious Travel https://forums.dfworkshop.net/viewtopic.php?f=22&t=1293
 ARC_TEDIOUSTRAVEL=TediousTravel-0.4.1.zip
 
+# Airships https://forums.dfworkshop.net/viewtopic.php?f=14&t=2324
+ARC_AIRSHIPS=DFAirships-15-0-2-0-1569639836.zip
+
 # Roleplay Realism https://forums.dfworkshop.net/viewtopic.php?f=27&t=2298
 ARC_ROLEPLAYREALISM=RoleplayRealism-0.4.zip-16-0-4-1567962300.zip
 
@@ -528,6 +531,11 @@ fi
 if [ "$TEDIOUSTRAVEL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_TEDIOUSTRAVEL" -d "$assets"/Mods/ StandaloneLinux/tedioustravel.dfmod
     install_log "Mod: $ARC_TEDIOUSTRAVEL"
+fi
+
+if [ "$AIRSHIPS" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_AIRSHIPS" -d "$assets"/Mods/ Linux/airships.dfmod
+    install_log "Mod: $ARC_AIRSHIPS"
 fi
 
 if [ "$ROLEPLAYREALISM" = "Y" ]; then
