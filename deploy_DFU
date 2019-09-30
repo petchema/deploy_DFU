@@ -204,6 +204,9 @@ ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
+# Starting Dungeon Randomizer https://forums.dfworkshop.net/viewtopic.php?f=27&t=2669
+ARC_STARTRANDOMIZER='Starting Dungeon Randomizer-17-1-3-1569719801.zip'
+
 # Daggerfall Autosave https://forums.dfworkshop.net/viewtopic.php?f=14&t=2151
 ARC_AUTOSAVE=df-unity.Autosave-Autosave-v0.9.0b.zip
 
@@ -571,6 +574,11 @@ fi
 if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
     cp "$SOURCEDIR/$ARC_PERSISTENTDUNGEONS" "$assets"/Mods/
     install_log "Mod: $ARC_PERSISTENTDUNGEONS"
+fi
+
+if [ "$STARTRANDOMIZER" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_STARTRANDOMIZER" -d "$assets"/QuestPacks/ "dfu-starting-dungeon-randomizer/*.txt"
+    install_log "Mod: $ARC_STARTRANDOMIZER"
 fi
 
 if [ "$AUTOSAVE" = "Y" ]; then
