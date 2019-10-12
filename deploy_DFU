@@ -142,6 +142,9 @@ ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
 # Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 
+# Windmills of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=14&t=2850
+ARC_WINDMILLSOFDAGGERFALL='Windmills of Daggerfall.rar'
+
 # Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
 ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.2.zip
 
@@ -453,6 +456,11 @@ fi
 if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_BIRDSINDAGGERFALL" "StandaloneLinux/birds in daggerfall.dfmod" -d "$assets"/Mods/
     install_log "Mod: $ARC_BIRDSINDAGGERFALL"
+fi
+
+if [ "$WINDMILLSOFDAGGERFALL" = "Y" ]; then
+    unrar e "$SOURCEDIR/$ARC_WINDMILLSOFDAGGERFALL" -d "$assets"/Mods StandaloneLinux/'windmills of daggerfall.dfmod'
+    install_log "Mod: $ARC_WINDMILLSOFDAGGERFALL"
 fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
