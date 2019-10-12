@@ -139,6 +139,9 @@ ARC_HARVESTABLECROPS=HarvestableCrops_v1.0.0-rc.1.zip
 # Vibrant Wind https://forums.dfworkshop.net/viewtopic.php?f=14&t=532
 ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
 
+# Location Loader https://forums.dfworkshop.net/viewtopic.php?f=27&t=1046
+ARC_LOCATIONLOADER='LocationLoader 0.3.zip'
+
 # Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 
@@ -451,6 +454,11 @@ fi
 if [ "$VIBRANTWIND" = "Y" ]; then
     7z e "$SOURCEDIR/$ARC_VIBRANTWIND" "${ARC_VIBRANTWIND%.7z}"/Linux/vibrantwind.dfmod -o"$assets"/Mods/
     install_log "Mod: $ARC_VIBRANTWIND"
+fi
+
+if [ "$LOCATIONLOADER" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_LOCATIONLOADER" StandaloneLinux/locationloader.dfmod -d "$assets"/Mods/
+    install_log "Mod: $ARC_LOCATIONLOADER"
 fi
 
 if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
