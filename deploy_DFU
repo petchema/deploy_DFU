@@ -557,7 +557,7 @@ if [ "$WILDERNESSENCOUNTERS" = "Y" ]; then
 fi
 
 if [ "$QUESTPACK1" = "Y" ]; then
-    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/QuestPacks # Should only unpack JH subdir & contents, oh well
+    unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/
     install_log "Mod: $ARC_QUESTPACK1"
 fi
 
