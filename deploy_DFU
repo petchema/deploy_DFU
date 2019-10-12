@@ -143,6 +143,9 @@ ARC_VIBRANTWIND=VibrantWind_v0.5_.7z
 ARC_LOCATIONLOADER='LocationLoader 0.3.zip'
 ARC_LOCATIONLOADERTEST=TestLocations.zip
 
+# Rocks of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=14&t=2261
+ARC_LOCATIONLOADER_RODGAVAUDON=RoD_Gavaudon.rar
+
 # Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 
@@ -273,9 +276,15 @@ check_conflicting() {
 
 check_requirements () {
     local requiree=$1
-    local required=$2
 
-    [ "$requiree" = "Y" -a "$required" != "Y" ] && fatal "Option $requiree requires option $required to be also enabled"
+    if [ "${!requiree}" = "Y" ]; then
+        shift
+        local missing=()
+        for required in "$@"; do
+            [ "${!required}" = "Y" ] || missing+=("$required")
+        done
+        [ ${#missing[*]} -gt 0 ] && fatal "Option $requiree requires option(s) ${missing[*]} to be also enabled"
+    fi
     return 0
 }
 
@@ -298,10 +307,15 @@ check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS
 check_conflicting INSTALL "Random encounters" WARMASHES WILDERNESSENCOUNTERS
 
 # Loading screens
-check_requirements "$LOADINGSCREENOBLIVION" "$LOADINGSCREEN"
+check_requirements "LOADINGSCREENOBLIVION" "LOADINGSCREEN"
 
 # Locations
-check_requirements "$LOCATIONLOADERTEST" "$LOCATIONLOADER"
+check_requirements "LOCATIONLOADERTEST" "LOCATIONLOADER"
+
+check_requirements "LOCATIONLOADER_RODGAVAUDON" "LOCATIONLOADER"
+check_requirements "RODGAVAUDON_MAIN" "LOCATIONLOADER_RODGAVAUDON"
+check_requirements "RODGAVAUDON_EXTRADETAIL" "LOCATIONLOADER_RODGAVAUDON"
+check_requirements "RODGAVAUDON_MOUNTAINLAYER" "LOCATIONLOADER_RODGAVAUDON"
 
 # -- Let's go
 
@@ -474,12 +488,27 @@ fi
 if [ "$LOCATIONLOADER" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_LOCATIONLOADER" StandaloneLinux/locationloader.dfmod -d "$assets"/Mods/
     install_log "Mod: $ARC_LOCATIONLOADER"
+
+    if [ "$LOCATIONLOADERTEST" = "Y" ]; then
+       unzip "$SOURCEDIR/$ARC_LOCATIONLOADERTEST" "StreamingAssets/*" -d "$assets"/../
+       install_log "Mod: $ARC_LOCATIONLOADERTEST"
+    fi
+
+    if [ "$LOCATIONLOADER_RODGAVAUDON" = "Y" ]; then
+        unrar x "$SOURCEDIR/$ARC_LOCATIONLOADER_RODGAVAUDON" "$TEMP/RodGavaudon/"
+        if [ "$RODGAVAUDON_MAIN" = "Y" ]; then
+            unrar x "$TEMP/RodGavaudon/RoD_Gavaudon_Main.rar" "$assets"/
+        fi
+        if [ "$RODGAVAUDON_EXTRADETAIL" = "Y" ]; then
+            unrar x "$TEMP/RodGavaudon/RoD_Gavaudon_ExtraDetail.rar" "$assets"/
+        fi
+        if [ "$RODGAVAUDON_MOUNTAINLAYER" = "Y" ]; then
+            unrar x "$TEMP/RodGavaudon/RoD_Gavaudon_MountainLayer.rar" "$assets"/
+        fi
+        install_log "Mod: $ARC_LOCATIONLOADER_RODGAVAUDON (RODGAVAUDON_MAIN=$RODGAVAUDON_MAIN, RODGAVAUDON_EXTRADETAIL=$RODGAVAUDON_EXTRADETAIL, RODGAVAUDON_MOUNTAINLAYER=$RODGAVAUDON_MOUNTAINLAYER)"
+    fi
 fi
 
-if [ "$LOCATIONLOADERTEST" = "Y" ]; then
-   unzip "$SOURCEDIR/$ARC_LOCATIONLOADERTEST" "StreamingAssets/*" -d "$assets"/../
-   install_log "Mod: $ARC_LOCATIONLOADERTEST"
-fi
 
 if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_BIRDSINDAGGERFALL" "StandaloneLinux/birds in daggerfall.dfmod" -d "$assets"/Mods/
