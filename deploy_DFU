@@ -156,7 +156,7 @@ ARC_WINDMILLSOFDAGGERFALL='Windmills of Daggerfall.rar'
 ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.2.zip
 
 # Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
-ARC_VILLAGERIMMERSION=VIO-V3.rar
+ARC_VILLAGERIMMERSION=VIOv4.rar
 
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
 ARC_POSTPROCESSING=PostProcessing_1.0.1.zip
@@ -536,7 +536,7 @@ if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
 fi
 
 if [ "$VILLAGERIMMERSION" = "Y" ]; then
-    unrar e "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Mods/ VIO_V3/ViO_v3_Linux.dfmod
+    unrar e "$SOURCEDIR/$ARC_VILLAGERIMMERSION" "$assets"/Mods/ StandaloneLinux/villagerimmersionoverhaul.dfmod
     install_log "Mod: $ARC_VILLAGERIMMERSION"
 fi
 
