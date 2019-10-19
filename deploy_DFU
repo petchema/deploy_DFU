@@ -198,7 +198,7 @@ ARC_AIRSHIPS=DFAirships-15-0-2-0-1569639836.zip
 ARC_ROLEPLAYREALISM=RoleplayRealism-0.4.zip-16-0-4-1567962300.zip
 
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
-ARC_WARMASHES="WarmAshesV3.0.2.rar"
+ARC_WARMASHES="WarmAshesV3.0.3.rar"
 
 # Warm Ashes: Wilderness Encounters V3 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087&start=90#p23111
 ARC_WILDERNESSENCOUNTERS=WAQ_Wilderness.rar
@@ -628,7 +628,7 @@ if [ "$ROLEPLAYREALISM" = "Y" ]; then
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
-    unrar x "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/ 'QuestPacks/*'
+    unrar x "$SOURCEDIR/$ARC_WARMASHES" -d "$assets"/
     install_log "Mod: $ARC_WARMASHES"
 fi
 
