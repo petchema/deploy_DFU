@@ -146,6 +146,7 @@ ARC_LOCATIONLOADERTEST=TestLocations.zip
 # Rocks of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=14&t=2261
 ARC_LOCATIONLOADER_RODGAVAUDON=RoD_Gavaudon.rar
 ARC_ROCKSOFDAGGERFALL='Rocks of Daggerfall v0.2 .rar'
+ARC_ROCKSOFDAGGERFALL_LOCATIONSPACK='Locations Pack.rar'
 
 # Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
@@ -322,6 +323,8 @@ check_requirements "LOCATIONLOADER_RODGAVAUDON" "LOCATIONLOADER"
 check_requirements "RODGAVAUDON_MAIN" "LOCATIONLOADER_RODGAVAUDON"
 check_requirements "RODGAVAUDON_EXTRADETAIL" "LOCATIONLOADER_RODGAVAUDON"
 check_requirements "RODGAVAUDON_MOUNTAINLAYER" "LOCATIONLOADER_RODGAVAUDON"
+
+check_requirements "ROCKSOFDAGGERFALL_LOCATIONSPACK" "ROCKSOFDAGGERFALL"
 
 # -- Let's go
 
@@ -521,9 +524,16 @@ if [ "$ROCKSOFDAGGERFALL" = "Y" ]; then
         unrar e "$SOURCEDIR/$ARC_ROCKSOFDAGGERFALL" StandaloneLinux/locationloader.dfmod "$assets"/Mods/
     fi
     unrar e "$SOURCEDIR/$ARC_ROCKSOFDAGGERFALL" 'StandaloneLinux/rocks of daggerfall.dfmod' "$assets"/Mods/
+        
     unrar x "$SOURCEDIR/$ARC_ROCKSOFDAGGERFALL" Locations.rar "$TEMP/RocksOfDaggerfall/"
     unrar x "$TEMP/RocksOfDaggerfall/Locations.rar" "$assets"/
     install_log "Mod: $ARC_ROCKSOFDAGGERFALL"
+
+    if [ "$ROCKSOFDAGGERFALL_LOCATIONSPACK" = "Y" ]; then
+        rm "$assets"/Locations/RoD_*.txt
+        unrar x "$SOURCEDIR/$ARC_ROCKSOFDAGGERFALL_LOCATIONSPACK" "$assets"/Locations/
+        install_log "Mod: $ARC_ROCKSOFDAGGERFALL_LOCATIONSPACK"
+    fi
 fi
 
 if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
