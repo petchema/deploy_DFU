@@ -215,7 +215,7 @@ ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.9-14-0-9-1571560366.zip
 ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
 
 # Ironman & Ironman Game Systems https://forums.dfworkshop.net/viewtopic.php?f=27&t=2586
-ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-2-1571031732.zip'
+ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-3-1572130386.zip'
 ARC_IRONMANGAMESYSTEMS="$ARC_IRONMAN"
 
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
