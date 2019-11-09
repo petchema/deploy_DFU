@@ -221,6 +221,9 @@ ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
 ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-3-1572130386.zip'
 ARC_IRONMANGAMESYSTEMS="$ARC_IRONMAN"
 
+# Magicka Regeneration https://forums.dfworkshop.net/viewtopic.php?f=12&t=1653
+ARC_MAGICKAREGENERATION='Magicka Regeneration.zip'
+
 # Persistent Dungeons https://forums.dfworkshop.net/viewtopic.php?f=27&t=1667
 ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 
@@ -678,6 +681,11 @@ fi
 if [ "$IRONMANGAMESYSTEMS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_IRONMANGAMESYSTEMS" -d "$assets"/Mods/ 'StandaloneLinux/ironman game systems.dfmod'
     install_log "Mod: $ARC_IRONMANGAMESYSTEMS (IRONMANGAMESYSTEMS=$IRONMANGAMESYSTEMS)"
+fi
+
+if [ "$MAGICKAREGENERATION" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_MAGICKAREGENERATION" -d "$assets"/Mods/ 'StandaloneLinux/magicka regeneration.dfmod'
+    install_log "Mod: $ARC_MAGICKAREGENERATION"
 fi
 
 if [ "$PERSISTENTDUNGEONS" = "Y" ]; then
