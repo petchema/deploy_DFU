@@ -151,6 +151,9 @@ ARC_ROCKSOFDAGGERFALL_LOCATIONSPACK='Locations Pack.rar'
 # Birds in Daggerfall II https://forums.dfworkshop.net/viewtopic.php?f=14&t=2214
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 
+# Taverns Redone https://forums.dfworkshop.net/viewtopic.php?f=14&t=2979
+ARC_TAVERNSREDONE='Taverns Redone-43-0-1-1573077260.zip'
+
 # Windmills of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=14&t=2850
 ARC_WINDMILLSOFDAGGERFALL='Windmills of Daggerfall.rar'
 
@@ -540,6 +543,11 @@ fi
 if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_BIRDSINDAGGERFALL" "StandaloneLinux/birds in daggerfall.dfmod" -d "$assets"/Mods/
     install_log "Mod: $ARC_BIRDSINDAGGERFALL"
+fi
+
+if [ "$TAVERNSREDONE" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_TAVERNSREDONE" "StandaloneLinux/taverns redone.dfmod" -d "$assets"/Mods/
+    install_log "Mod: $ARC_TAVERNSREDONE"
 fi
 
 if [ "$WINDMILLSOFDAGGERFALL" = "Y" ]; then
