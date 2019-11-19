@@ -211,6 +211,9 @@ ARC_WILDERNESSENCOUNTERS=WAQ_Wilderness.rar
 # DFU Quest Pack #1 https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 ARC_QUESTPACK1=Quest_Pack_1.zip
 
+# theJF Quest Pack https://forums.dfworkshop.net/viewtopic.php?f=14&t=2895
+ARC_THEJFQUESTPACK=daggerfall-quests-master.zip
+
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.9-14-0-9-1571560366.zip
 
@@ -660,6 +663,11 @@ fi
 if [ "$QUESTPACK1" = "Y" ]; then
     unzip -o "$SOURCEDIR/$ARC_QUESTPACK1" -d "$assets"/
     install_log "Mod: $ARC_QUESTPACK1"
+fi
+
+if [ "$THEJFQUESTPACK" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_THEJFQUESTPACK" -d "$assets"/QuestPacks/JF/
+    install_log "Mod: $ARC_THEJFQUESTPACK"
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
