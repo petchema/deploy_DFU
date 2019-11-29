@@ -121,6 +121,9 @@ ARC_COMPASSTEXTURES=CompassTextures.7z
 # Daggerfall World Map https://forums.dfworkshop.net/viewtopic.php?f=22&t=1804
 ARC_DAGGERFALLWORLDMAP="Daggerfall World Map.zip"
 
+# Stargate Begone https://www.nexusmods.com/daggerfallunity/mods/45
+ARC_STARGATEBEGONE='Stargate Begone-45-1-0-1574044005.zip'
+
 # Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=27&t=1542
 ARC_ENHANCEDSKY=EnhancedSky_2.1.1.zip
 
@@ -472,6 +475,11 @@ fi
 if [ "$DAGGERFALLWORLDMAP" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_DAGGERFALLWORLDMAP" -d "$assets"/Mods "StandaloneLinux/daggerfall world map.dfmod"
     install_log "Mod: $ARC_DAGGERFALLWORLDMAP"
+fi
+
+if [ "$STARGATEBEGONE" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_STARGATEBEGONE" -d "$assets"/
+    install_log "Mod: $ARC_STARGATEBEGONE"
 fi
 
 if [ "$ENHANCEDSKY" = "Y" ]; then
