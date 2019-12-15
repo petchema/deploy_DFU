@@ -192,6 +192,9 @@ ARC_DFREMASTEREDMUSIC=DaggerfallMusicRemasteredFinal.rar
 # Vanilla MIDI OST https://forums.dfworkshop.net/viewtopic.php?f=14&t=2341
 ARC_VANILLAMIDIOST="Vanilla MIDI OST - Music on a Roland SC55 V2.0-11-2-0-1566768805.7z"
 
+# Chip Music https://forums.dfworkshop.net/viewtopic.php?f=14&t=3132
+ARC_CHIPMUSIC='Chip Music DFU-50-1-0-1575672757.rar'
+
 # Cleaned SoundClips https://forums.dfworkshop.net/viewtopic.php?f=14&t=1692
 ARC_SOUNDCLIPSMIXDOWN=SoundClips-1.3.zip
 
@@ -317,7 +320,7 @@ check_conflicting INSTALL "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
 check_conflicting INSTALL "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
-check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST
+check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST CHIPMUSIC
 check_conflicting RUNTIME "Songs overhauls" DREAM MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST
 check_conflicting RUNTIME "Sounds overhauls" SOUNDCLIPSMIXDOWN DREAM
 
@@ -636,6 +639,10 @@ if [ "$VANILLAMIDIOST" = "Y" ]; then
     install_log "Mod: $ARC_VANILLAMIDIOST"
 fi
 
+if [ "$CHIPMUSIC" = "Y" ]; then
+    unrar x "$SOURCEDIR/$ARC_CHIPMUSIC" "$assets"/Sound/
+    install_log "Mod: $ARC_CHIPMUSIC"
+fi
 
 if [ "$SOUNDCLIPSMIXDOWN" = "Y" ]; then
     mkdir -p "$assets"/Sound/
