@@ -176,8 +176,7 @@ ARC_IMPROVEDLIGHTING="Improved Interior Lighting_1.0.2.rar"
 ARC_CONVENIENTCLOCK="Convenient Clock-25-1-03-1569265588.zip"
 
 # Loading Screen https://forums.dfworkshop.net/viewtopic.php?f=27&t=469
-ARC_LOADINGSCREEN=LoadingScreen-38-2-4-1571580084.zip
-LOADINGSCREEN_VERSION=2.4
+ARC_LOADINGSCREEN='LoadingScreen - Linux-38-2-4-1-1575813616.zip'
 ARC_LOADINGSCREENOBLIVION=OblivionStyledLoadScreensV2.rar
 
 # Readable books https://forums.dfworkshop.net/viewtopic.php?f=14&t=1607
@@ -606,7 +605,7 @@ if [ "$CONVENIENTCLOCK" = "Y" ]; then
 fi
 
 if [ "$LOADINGSCREEN" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$assets"/Mods "LoadingScreen_${LOADINGSCREEN_VERSION}/Linux/loadingscreen.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_LOADINGSCREEN" -d "$assets"/Mods "Mods/loadingscreen.dfmod"
     install_log "Mod: $ARC_LOADINGSCREEN"
 
     if [ "$LOADINGSCREENOBLIVION" = "Y" ]; then
