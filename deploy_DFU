@@ -208,7 +208,7 @@ ARC_AIRSHIPS=DFAirships-15-0-2-0-1569639836.zip
 ARC_ROLEPLAYREALISM=RoleplayRealism-0.7-16-v0-7-1576528129.zip
 
 # Climates&Cloaks https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
-ARC_CLIMATECLOAKS='Climates&Cloaks.zip'
+ARC_CLIMATECLOAKS='Climates and Cloaks-49-0-9-1-1576607889.zip'
 
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES="WarmAshesV3.0.3.rar"
@@ -668,7 +668,7 @@ if [ "$ROLEPLAYREALISM" = "Y" ]; then
 fi
 
 if [ "$CLIMATECLOAKS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/Mods/ 'StandaloneLinux/climate & cloaks.dfmod'
+    unzip -j "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/Mods/ 'StandaloneLinux/climates & cloaks.dfmod'
     install_log "Mod: $ARC_CLIMATECLOAKS"
 fi
 
