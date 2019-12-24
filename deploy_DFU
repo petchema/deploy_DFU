@@ -216,6 +216,10 @@ ARC_LOOTREALISM=LootRealism-0.1-61-v0-1-1576928146.zip
 # Climates&Cloaks https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
 ARC_CLIMATECLOAKS='Climates and Cloaks-49-0-9-2-1576865983.zip'
 
+# Inventory Filter https://forums.dfworkshop.net/viewtopic.php?f=27&t=3224
+# Renamed from "Linux Version" :/
+ARC_INVENTORYFILTER='Inventory Filter Linux Version-59-1-0-1576887374.zip'
+
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES="WarmAshesV3.0.3.rar"
 
@@ -686,6 +690,11 @@ fi
 if [ "$CLIMATECLOAKS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/Mods/ 'StandaloneLinux/climates & cloaks.dfmod'
     install_log "Mod: $ARC_CLIMATECLOAKS"
+fi
+
+if [ "$INVENTORYFILTER" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_INVENTORYFILTER" -d "$assets"/Mods/
+    install_log "Mod: $ARC_INVENTORYFILTER"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
