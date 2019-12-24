@@ -245,6 +245,10 @@ ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
 ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-3-1572130386.zip'
 ARC_IRONMANGAMESYSTEMS="$ARC_IRONMAN"
 
+# Unleveled Mobs, Unleveled Quests https://forums.dfworkshop.net/viewtopic.php?f=27&t=3137
+ARC_UNLEVELEDMOBS='Unleveled Mobs-51-0-7-3-1575940828.zip'
+ARC_UNLEVELEDQUESTS='Unleveled Quests-51-0-8-1-1576379724.zip'
+
 # Magicka Regeneration https://forums.dfworkshop.net/viewtopic.php?f=12&t=1653
 ARC_MAGICKAREGENERATION='Magicka Regeneration.zip'
 
@@ -744,6 +748,16 @@ fi
 if [ "$IRONMANGAMESYSTEMS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_IRONMANGAMESYSTEMS" -d "$assets"/Mods/ 'StandaloneLinux/ironman game systems.dfmod'
     install_log "Mod: $ARC_IRONMANGAMESYSTEMS (IRONMANGAMESYSTEMS=$IRONMANGAMESYSTEMS)"
+fi
+
+if [ "$UNLEVELEDMOBS" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_UNLEVELEDMOBS" -d "$assets"/Mods/ 'StandaloneLinux/unleveled mobs.dfmod'
+    install_log "Mod: $ARC_UNLEVELEDMOBS"
+fi
+
+if [ "$UNLEVELEDQUESTS" = "Y" ]; then
+    unzip -o "$SOURCEDIR/$ARC_UNLEVELEDQUESTS" -d "$assets"/ 'Quests/*' 'Tables/*'
+    install_log "Mod: $ARC_UNLEVELEDQUESTS"
 fi
 
 if [ "$MAGICKAREGENERATION" = "Y" ]; then
