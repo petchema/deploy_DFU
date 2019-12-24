@@ -220,6 +220,9 @@ ARC_CLIMATECLOAKS='Climates and Cloaks-49-0-9-2-1576865983.zip'
 # Renamed from "Linux Version" :/
 ARC_INVENTORYFILTER='Inventory Filter Linux Version-59-1-0-1576887374.zip'
 
+# Outfit Manager https://forums.dfworkshop.net/viewtopic.php?f=14&t=3248
+ARC_OUTFITMANAGER='Outfit Manager-62-1-0-1577179020.rar'
+
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES="WarmAshesV3.0.3.rar"
 
@@ -695,6 +698,11 @@ fi
 if [ "$INVENTORYFILTER" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_INVENTORYFILTER" -d "$assets"/Mods/
     install_log "Mod: $ARC_INVENTORYFILTER"
+fi
+
+if [ "$OUTFITMANAGER" = "Y" ]; then
+    unrar x "$SOURCEDIR/$ARC_OUTFITMANAGER" "$assets"/Mods/
+    install_log "Mod: $ARC_OUTFITMANAGER"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
