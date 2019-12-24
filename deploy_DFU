@@ -242,7 +242,7 @@ ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.11-14-v0-11-1576485158.zip
 ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
 
 # Ironman & Ironman Game Systems https://forums.dfworkshop.net/viewtopic.php?f=27&t=2586
-ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-3-1572130386.zip'
+ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-4-1575872217.zip'
 ARC_IRONMANGAMESYSTEMS="$ARC_IRONMAN"
 
 # Unleveled Mobs, Unleveled Quests https://forums.dfworkshop.net/viewtopic.php?f=27&t=3137
