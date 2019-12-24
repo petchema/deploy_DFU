@@ -195,6 +195,9 @@ ARC_VANILLAMIDIOST="Vanilla MIDI OST - Music on a Roland SC55 V2.0-11-2-0-156676
 # Orchestral and Accoustic Remaster https://forums.dfworkshop.net/viewtopic.php?f=27&t=3203
 ARC_ORCHESTRALACCOUSTIC=Daggerfall-Soundtrack-RemasterV1.1.zip
 
+# Re-sequenced Daggerfall Music https://www.nexusmods.com/daggerfallunity/mods/12
+ARC_RESEQUENCEDMUSIC='Re-sequenced Daggerfall music - Normalized-12-191009-1570622512.7z'
+
 # Chip Music https://forums.dfworkshop.net/viewtopic.php?f=14&t=3132
 ARC_CHIPMUSIC='Chip Music DFU-50-1-0-1575672757.rar'
 
@@ -337,8 +340,8 @@ check_conflicting INSTALL "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
 check_conflicting INSTALL "DREAM contains BrightExit"  DREAM BRIGHTEXIT
 
 # Songs
-check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST CHIPMUSIC ARC_ORCHESTRALACCOUSTIC
-check_conflicting RUNTIME "Songs overhauls" DREAM MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST
+check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST CHIPMUSIC ORCHESTRALACCOUSTIC RESEQUENCEDMUSIC
+check_conflicting RUNTIME "Songs overhauls" DREAM MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST CHIPMUSIC ORCHESTRALACCOUSTIC RESEQUENCEDMUSIC
 check_conflicting RUNTIME "Sounds overhauls" SOUNDCLIPSMIXDOWN DREAM
 
 # Terrain generators
@@ -656,6 +659,11 @@ fi
 if [ "$ORCHESTRALACCOUSTIC" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_ORCHESTRALACCOUSTIC" -d "$assets"/Sound/
     install_log "Mod: $ARC_ORCHESTRALACCOUSTIC"
+fi
+
+if [ "$RESEQUENCEDMUSIC" = "Y" ]; then
+    7z x "$SOURCEDIR/$ARC_RESEQUENCEDMUSIC" -o"$assets"/../
+    install_log "Mod: $ARC_RESEQUENCEDMUSIC"
 fi
 
 if [ "$CHIPMUSIC" = "Y" ]; then
