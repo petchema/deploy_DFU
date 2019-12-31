@@ -229,6 +229,9 @@ ARC_INVENTORYFILTER='Inventory Filter Linux Version-59-1-0-1576887374.zip'
 # Outfit Manager https://forums.dfworkshop.net/viewtopic.php?f=14&t=3248
 ARC_OUTFITMANAGER='Outfit Manager 2.0-62-2-0-1577263460.rar'
 
+# Wilderness NPCs https://forums.dfworkshop.net/viewtopic.php?f=27&t=3267
+ARC_WILDERNESSNPCS='Wilderness NPCs-64-1-1-0-1577420306.zip'
+
 # Warm Ashes: Dangerous Dungeon Exteriors V2.6 https://forums.dfworkshop.net/viewtopic.php?f=27&t=1087
 ARC_WARMASHES="WarmAshesV3.0.3.rar"
 
@@ -720,6 +723,11 @@ fi
 if [ "$OUTFITMANAGER" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_OUTFITMANAGER" "$assets"/Mods/
     install_log "Mod: $ARC_OUTFITMANAGER"
+fi
+
+if [ "$WILDERNESSNPCS" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_WILDERNESSNPCS" -d "$assets"/Mods/ WildernessNPCs/StandaloneLinux/wildernessnpcs.dfmod
+    install_log "Mod: $ARC_WILDERNESSNPCS"
 fi
 
 if [ "$WARMASHES" = "Y" ]; then
