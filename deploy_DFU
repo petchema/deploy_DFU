@@ -118,6 +118,9 @@ ARC_FANCYINDICATORS=FancyVitalIndicators.zip
 # Compass texture https://forums.dfworkshop.net/viewtopic.php?f=14&t=630
 ARC_COMPASSTEXTURES=CompassTextures.7z
 
+# NPC Health Indicators https://forums.dfworkshop.net/viewtopic.php?f=27&t=3263
+ARC_NPCHEALTHINDICATORS='NPC Health Indicators-63-1-1-1-1577569464.zip'
+
 # Daggerfall World Map https://forums.dfworkshop.net/viewtopic.php?f=22&t=1804
 ARC_DAGGERFALLWORLDMAP="Daggerfall World Map.zip"
 
@@ -492,6 +495,11 @@ if [ "$COMPASSTEXTURES" = "Y" ]; then
         [ -e "$compassfile" ] && mv "$compassfile" "$compassfile.disabled"
     done
     install_log "Mod: $ARC_COMPASSTEXTURES ($COMPASSTEXTURE)"
+fi
+
+if [ "$NPCHEALTHINDICATORS" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_NPCHEALTHINDICATORS" -d "$assets"/Mods/ NPCHealthIndicators/StandaloneLinux/npchealthindicators.dfmod
+    install_log "Mod: $ARC_NPCHEALTHINDICATORS"
 fi
 
 if [ "$DAGGERFALLWORLDMAP" = "Y" ]; then
