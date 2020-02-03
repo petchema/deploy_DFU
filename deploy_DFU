@@ -228,6 +228,9 @@ ARC_FILLINGFOOD='Filling Food-65-1-1-1579217296.zip'
 # Meaner Monsters https://forums.dfworkshop.net/viewtopic.php?f=27&t=3372
 ARC_MEANERMONSTERS='Meaner Monsters-69-1-0-1580664545.zip'
 
+# LevelUp Adjuster https://forums.dfworkshop.net/viewtopic.php?f=27&t=3337
+ARC_LEVELUPADJUSTER='LevelUp Adjuster-68-1-1-1-1579898288.zip'
+
 # Inventory Filter https://forums.dfworkshop.net/viewtopic.php?f=27&t=3224
 ARC_INVENTORYFILTER='Inventory Filter - Linux-59-1-2-1580506445.zip'
 
@@ -728,6 +731,11 @@ fi
 if [ "$MEANERMONSTERS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_MEANERMONSTERS" -d "$assets"/Mods/ 'StandaloneLinux/meaner monsters.dfmod'
     install_log "Mod: $ARC_MEANERMONSTERS"
+fi
+
+if [ "$LEVELUPADJUSTER" = "Y" ]; then
+    unzip -j "$SOURCEDIR/$ARC_LEVELUPADJUSTER" -d "$assets"/Mods/ 'StandaloneLinux/levelup adjuster.dfmod'
+    install_log "Mod: $ARC_LEVELUPADJUSTER"
 fi
 
 if [ "$INVENTORYFILTER" = "Y" ]; then
