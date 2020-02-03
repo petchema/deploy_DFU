@@ -718,7 +718,7 @@ if [ "$CLIMATECLOAKS" = "Y" ]; then
 fi
 
 if [ "$FILLINGFOOD" = "Y" ]; then
-    unzip "$SOURCEDIR/$ARC_FILLINGFOOD" -d "$assets"/Mods/
+    unzip -j "$SOURCEDIR/$ARC_FILLINGFOOD" -d "$assets"/Mods/ 'StandaloneLinux/filling food.dfmod'
     install_log "Mod: $ARC_FILLINGFOOD"
 fi
 
