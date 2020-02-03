@@ -222,6 +222,9 @@ ARC_LOOTREALISM=LootRealism-0.1-61-v0-1-1576928146.zip
 # Climates&Cloaks https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
 ARC_CLIMATECLOAKS='Climates and Cloaks-49-1-0-1577896171.zip'
 
+# Filling Food https://forums.dfworkshop.net/viewtopic.php?f=27&t=3327
+ARC_FILLINGFOOD='Filling Food-65-1-1-1579217296.zip'
+
 # Inventory Filter https://forums.dfworkshop.net/viewtopic.php?f=27&t=3224
 ARC_INVENTORYFILTER='Inventory Filter - Linux-59-1-1-1578093550.zip'
 
@@ -712,6 +715,11 @@ fi
 if [ "$CLIMATECLOAKS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/Mods/ 'StandaloneLinux/climates & cloaks.dfmod'
     install_log "Mod: $ARC_CLIMATECLOAKS"
+fi
+
+if [ "$FILLINGFOOD" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_FILLINGFOOD" -d "$assets"/Mods/
+    install_log "Mod: $ARC_FILLINGFOOD"
 fi
 
 if [ "$INVENTORYFILTER" = "Y" ]; then
