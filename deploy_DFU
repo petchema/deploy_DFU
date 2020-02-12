@@ -175,6 +175,10 @@ ARC_VILLAGERIMMERSION=VIOv4.rar
 # Post Processing Effects https://forums.dfworkshop.net/viewtopic.php?f=27&t=694
 ARC_POSTPROCESSING=PostProcessing-v1.2.0-multi.zip
 
+# Telescope https://forums.dfworkshop.net/viewtopic.php?f=14&t=3403
+# Renamed from "Linux Version..."
+ARC_TELESCOPE='Telescope Linux Version-72-1-0-1581534008.zip'
+
 # Improved Interior Lighting https://forums.dfworkshop.net/viewtopic.php?f=27&t=2479
 ARC_IMPROVEDLIGHTING="Improved Interior Lighting_1.0.2.rar"
 
@@ -640,6 +644,11 @@ fi
 if [ "$POSTPROCESSING" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_POSTPROCESSING" -d "$assets"/Mods Linux/postprocessing.dfmod
     install_log "Mod: $ARC_POSTPROCESSING"
+fi
+
+if [ "$TELESCOPE" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_TELESCOPE" -d "$assets"/Mods/
+    install_log "Mod: $ARC_TELESCOPE"
 fi
 
 if [ "$IMPROVEDLIGHTING" = "Y" ]; then
