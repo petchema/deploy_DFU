@@ -260,7 +260,7 @@ ARC_QUESTPACK1=Quest_Pack_1.zip
 ARC_THEJFQUESTPACK=daggerfall-quests-master.zip
 
 # Archeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
-ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-0.11-14-v0-11-1576485158.zip
+ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-1.0-14-v1-0-1582667191.zip
 
 # Daggerfall Skyshards https://forums.dfworkshop.net/viewtopic.php?f=27&t=2746
 ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
@@ -796,7 +796,7 @@ if [ "$THEJFQUESTPACK" = "Y" ]; then
 fi
 
 if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/Mods/ archaeologists.dfmod
+    unzip "$SOURCEDIR/$ARC_ARCHEOLOGISTSGUILD" -d "$assets"/
     install_log "Mod: $ARC_ARCHEOLOGISTSGUILD"
 fi
 
