@@ -227,7 +227,7 @@ ARC_ROLEPLAYREALISM=RoleplayRealism-0.9-16-v0-9-1582235234.zip
 ARC_LOOTREALISM=LootRealism-0.2-61-v0-2-1582662611.zip
 
 # Climates&Cloaks https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
-ARC_CLIMATECLOAKS='Climates and Cloaks-49-1-2-6-1582377135.zip'
+ARC_CLIMATECLOAKS='Climates and Cloaks-49-1-2-8-1584397546.zip'
 
 # Filling Food https://forums.dfworkshop.net/viewtopic.php?f=27&t=3327
 ARC_FILLINGFOOD='Filling Food-65-1-1-1579217296.zip'
@@ -741,7 +741,7 @@ if [ "$LOOTREALISM" = "Y" ]; then
 fi
 
 if [ "$CLIMATECLOAKS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/Mods/ 'StandaloneLinux/climates & cloaks.dfmod'
+    unzip "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/
     install_log "Mod: $ARC_CLIMATECLOAKS"
 fi
 
