@@ -284,7 +284,7 @@ ARC_PERSISTENTDUNGEONS='persistent dungeons.dfmod'
 ARC_STARTRANDOMIZER='Starting Dungeon Randomizer-17-1-3-1569719801.zip'
 
 # Start Saver https://forums.dfworkshop.net/viewtopic.php?f=14&t=3395
-ARC_STARTSAVER='Start Saver-71-1-0-1581240197.zip'
+ARC_STARTSAVER='Start Saver-71-1-1-1585042645.zip'
 
 # Daggerfall Autosave https://forums.dfworkshop.net/viewtopic.php?f=14&t=2151
 ARC_AUTOSAVE=df-unity.Autosave-Autosave-v0.9.0b.zip
@@ -848,7 +848,7 @@ if [ "$STARTRANDOMIZER" = "Y" ]; then
 fi
 
 if [ "$STARTSAVER" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_STARTSAVER" -d "$assets"/Mods/ 'StandaloneLinux/start saver.dfmod'
+    unzip -j "$SOURCEDIR/$ARC_STARTSAVER" -d "$assets"/Mods/ 'mods/start saver.dfmod'
     install_log "Mod: $ARC_STARTSAVER"
 fi
 
