@@ -167,7 +167,7 @@ ARC_TAVERNSREDONE='Taverns Redone-43-0-13-1581168270.zip'
 ARC_WINDMILLSOFDAGGERFALL='Windmills of Daggerfall.rar'
 
 # Realtime Reflections https://forums.dfworkshop.net/viewtopic.php?f=27&t=122
-ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.2.zip
+ARC_REALTIMEREFLECTIONS=RealtimeReflections_2.2.3.zip
 
 # Villager Immersion Overhaul https://forums.dfworkshop.net/viewtopic.php?f=27&t=924
 ARC_VILLAGERIMMERSION='VIO - V5 PreAlpha V5.0.2-7-5-0-2-1594931589.rar'
@@ -629,7 +629,7 @@ if [ "$WINDMILLSOFDAGGERFALL" = "Y" ]; then
 fi
 
 if [ "$REALTIMEREFLECTIONS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux/realtime reflections.dfmod" 
+    unzip -j "$SOURCEDIR/$ARC_REALTIMEREFLECTIONS" -d "$assets"/Mods "StandaloneLinux64/realtime reflections.dfmod" 
     if [ "$TEXTURESXL" = "Y" ]; then
         echo "TEXTURESXL has REALTIMEREFLECTIONS textures already, skipping"
     else
