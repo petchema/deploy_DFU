@@ -139,6 +139,9 @@ ARC_DISTANTTERRAIN=DistantTerrain_2.7.0a.zip
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
 ARC_MOUNTAINSHILLS="Mountain And Hills 1.02.zip"
 
+# Splat Terrain Texturing https://forums.dfworkshop.net/viewtopic.php?f=14&t=3322
+ARC_SPLATTERRAINTEXTURING='splat terrain texturing_beta3_linux.zip'
+
 # Real Grass 2 https://forums.dfworkshop.net/viewtopic.php?f=27&t=964
 ARC_REALGRASS='Real Grass - Linux-20-2-8-1582650120.7z'
 
@@ -552,6 +555,11 @@ fi
 if [ "$MOUNTAINSHILLS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_MOUNTAINSHILLS" -d "$assets"/Mods "${ARC_MOUNTAINSHILLS%.zip}/mountains and hills.dfmod"
     install_log "Mod: $ARC_MOUNTAINSHILLS"
+fi
+
+if [ "$SPLATTERRAINTEXTURING" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_SPLATTERRAINTEXTURING" -d "$assets"/Mods 'splat terrain texturing.dfmod'
+    install_log "Mod: $ARC_SPLATTERRAINTEXTURING"
 fi
 
 if [ "$REALGRASS" = "Y" ]; then
