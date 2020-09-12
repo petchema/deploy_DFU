@@ -134,7 +134,7 @@ ARC_STARGATEBEGONE='Stargate Begone-45-1-0-1574044005.zip'
 ARC_ENHANCEDSKY=EnhancedSky_2.1.2.zip
 
 # Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
-ARC_DISTANTTERRAIN=DistantTerrain_2.7.0a.zip
+ARC_DISTANTTERRAIN='Distant Terrain 2.8.1.zip'
 
 # Mountains and Hills https://forums.dfworkshop.net/viewtopic.php?f=27&t=1008
 ARC_MOUNTAINSHILLS="Mountain And Hills 1.02.zip"
@@ -548,7 +548,7 @@ if [ "$ENHANCEDSKY" = "Y" ]; then
 fi
 
 if [ "$DISTANTTERRAIN" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux/distant terrain.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_DISTANTTERRAIN" -d "$assets"/Mods "StandaloneLinux64/distant terrain.dfmod"
     install_log "Mod: $ARC_DISTANTTERRAIN"
 fi
 
