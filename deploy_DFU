@@ -267,7 +267,7 @@ ARC_THEJFQUESTPACK=daggerfall-quests-master.zip
 ARC_ARCHEOLOGISTSGUILD=ArchaeologistsGuild-1.1-14-v1-1-1589024849.zip
 
 # Daggerfall Skyshards https://forums.dfworkshop.net/viewtopic.php?f=27&t=2746
-ARC_SKYSHARDS=DaggerfallSkyshards-24-1-0-1569094927.zip
+ARC_SKYSHARDS='DaggerfallSkyShards Linux-24-1-01-1600280266.zip'
 
 # Ironman & Ironman Game Systems https://forums.dfworkshop.net/viewtopic.php?f=27&t=2586
 ARC_IRONMAN='(Current) Ironman and Ironman Game Systems-10-v0-2-4-1575872217.zip'
@@ -815,7 +815,7 @@ if [ "$ARCHEOLOGISTSGUILD" = "Y" ]; then
 fi
 
 if [ "$SKYSHARDS" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_SKYSHARDS" -d "$assets"/Mods/ 'SkyShards/Linux/daggerfall skyshards.dfmod'
+    unzip -j "$SOURCEDIR/$ARC_SKYSHARDS" -d "$assets"/Mods/ 'DaggerfallSkyShards 1.01 Linux/daggerfall skyshards.dfmod'
     install_log "Mod: $ARC_SKYSHARDS"
 fi
 
