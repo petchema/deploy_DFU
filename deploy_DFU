@@ -131,7 +131,7 @@ ARC_DAGGERFALLWORLDMAP="Daggerfall World Map.zip"
 ARC_STARGATEBEGONE='Stargate Begone-45-1-0-1574044005.zip'
 
 # Enhanced Sky https://forums.dfworkshop.net/viewtopic.php?f=27&t=1542
-ARC_ENHANCEDSKY=EnhancedSky_2.1.2.zip
+ARC_ENHANCEDSKY=EnhancedSky_2.2.0.zip
 
 # Distant Terrain https://forums.dfworkshop.net/viewtopic.php?f=27&t=10
 ARC_DISTANTTERRAIN='Distant Terrain 2.8.1.zip'
@@ -546,7 +546,7 @@ if [ "$STARGATEBEGONE" = "Y" ]; then
 fi
 
 if [ "$ENHANCEDSKY" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux/enhanced sky.dfmod"
+    unzip -j "$SOURCEDIR/$ARC_ENHANCEDSKY" -d "$assets"/Mods "StandaloneLinux64/enhanced sky.dfmod"
     install_log "Mod: $ARC_ENHANCEDSKY"
 fi
 
