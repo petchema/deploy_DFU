@@ -869,7 +869,7 @@ if [ "$STARTSAVER" = "Y" ]; then
 fi
 
 if [ "$AUTOSAVE" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_AUTOSAVE" -d "$assets"/Mods/Autosave "${ARC_AUTOSAVE%.zip}/StandaloneLinux/*"
+    unzip -j "$SOURCEDIR/$ARC_AUTOSAVE" -d "$assets"/Mods/ "${ARC_AUTOSAVE%.zip}/StandaloneLinux/autosave.dfmod"
     install_log "Mod: $ARC_AUTOSAVE"
 fi
 
