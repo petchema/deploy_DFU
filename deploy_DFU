@@ -367,8 +367,8 @@ check_requirements () {
 # Not TOPAZTEXTURES here since it's not a full overhaul
 check_conflicting INSTALL "Texture overhauls" DREAM REMASTER30 TEXTURESXL
 
-check_conflicting INSTALL "DREAM contains CharcoalGhosts"  DREAM CHARCOALGHOSTS
-check_conflicting INSTALL "DREAM contains BrightExit"  DREAM BRIGHTEXIT
+# Terrain Textures
+check_conflicting RUNTIME "Terrain textures" DREAM HIRESTERRAINTEXTURES
 
 # Songs
 check_conflicting INSTALL "Songs overhauls" MIDNIGHTPRINCESOUNDSCAPE DFREMASTEREDMUSIC VANILLAMIDIOST CHIPMUSIC ORCHESTRALACCOUSTIC RESEQUENCEDMUSIC
