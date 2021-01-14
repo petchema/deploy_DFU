@@ -192,7 +192,7 @@ ARC_POSTPROCESSING=PostProcessing_1.3.0_linux.zip
 ARC_TELESCOPE='Telescope Linux Version-72-1-0-1581534008.zip'
 
 # Improved Interior Lighting https://forums.dfworkshop.net/viewtopic.php?f=27&t=2479
-ARC_IMPROVEDLIGHTING="Improved Interior Lighting_1.0.2.rar"
+ARC_IMPROVEDLIGHTING='Improved Interior Lighting - Linux-144-1-0-3-1601977087.rar'
 
 # Convenient Clock https://forums.dfworkshop.net/viewtopic.php?f=27&t=1021
 ARC_CONVENIENTCLOCK="Convenient Clock-25-1-03-1569265588.zip"
@@ -696,7 +696,7 @@ if [ "$TELESCOPE" = "Y" ]; then
 fi
 
 if [ "$IMPROVEDLIGHTING" = "Y" ]; then
-    unrar e "$SOURCEDIR/$ARC_IMPROVEDLIGHTING" "$assets"/Mods/ "improved interior lighting.dfmod"
+    unrar e "$SOURCEDIR/$ARC_IMPROVEDLIGHTING" "$assets"/Mods/ "Improved_Interior_Lighting_Linux/improved interior lighting.dfmod"
     install_log "Mod: $ARC_IMPROVEDLIGHTING"
 fi
 
