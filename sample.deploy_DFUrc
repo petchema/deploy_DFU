@@ -1,4 +1,4 @@
-# Copy this file as ~/.deploy_DFU.cfg, or use -f to specify another path
+# Copy this file as ~/.config/deploy_DFU.conf, or use -f to specify another path
 
 # By default the script will look for archives in its directory;
 # Feel free to override here

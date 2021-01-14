@@ -32,7 +32,7 @@ owndir=$(cd "$owndir" && pwd)
 # Set defaults
 SOURCEDIR="$owndir"
 
-configfile=~/".${self}rc"
+configfile=~/".config/${self}.conf"
 
 if [ "$1" = "-f" ]; then
     configfile="$2"

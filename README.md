@@ -22,8 +22,8 @@ make it executable (chmod +x deploy_DFU).
 CONFIGURATION
 =============
 
-- Copy sample.deploy_DFUrc as ~/.deploy_DFUrc before editing it with your
-favorite text editor;
+- Copy sample.deploy_DFUrc as ~/.config/deploy_DFU.conf before editing
+it with your favorite text editor;
 
 - Modify the directory where deploy_DFU will find all the installation
 archives; Since there's no generic way to download all the mods, you will
