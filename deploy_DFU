@@ -211,6 +211,9 @@ ARC_DFREMASTEREDMUSIC=DaggerfallMusicRemasteredFinal.rar
 # Vanilla MIDI OST https://forums.dfworkshop.net/viewtopic.php?f=14&t=2341
 ARC_VANILLAMIDIOST="Vanilla MIDI OST - Music on a Roland SC55 V2.0-11-2-0-1566768805.7z"
 
+# Vanilla OPL-3 OST https://www.nexusmods.com/daggerfallunity/mods/79/
+ARC_OPL3OST=Daggerfall-OST-ADLMIDI-OPL3-10-0.1.7z
+
 # Orchestral and Accoustic Remaster https://forums.dfworkshop.net/viewtopic.php?f=27&t=3203
 ARC_ORCHESTRALACCOUSTIC=Daggerfall-Soundtrack-RemasterV1.1.zip
 
@@ -726,6 +729,11 @@ fi
 if [ "$VANILLAMIDIOST" = "Y" ]; then
     7z x "$SOURCEDIR/$ARC_VANILLAMIDIOST" -o"$assets"/
     install_log "Mod: $ARC_VANILLAMIDIOST"
+fi
+
+if [ "$OPL3OST" = "Y" ]; then
+    7z x "$SOURCEDIR/$ARC_OPL3OST" -o"$assets"/
+    install_log "Mod: $ARC_OPL3OST"
 fi
 
 if [ "$ORCHESTRALACCOUSTIC" = "Y" ]; then
