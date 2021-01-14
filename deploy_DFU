@@ -170,7 +170,7 @@ ARC_ROCKSOFDAGGERFALL_LOCATIONSPACK='Locations Pack.rar'
 ARC_BIRDSINDAGGERFALL="BirdsInDaggerfall 2.0.zip"
 
 # Taverns Redone https://forums.dfworkshop.net/viewtopic.php?f=14&t=2979
-ARC_TAVERNSREDONE='Tavern Redone - Main-43-0-15-1601949232.zip'
+ARC_TAVERNSREDONE='Taverns Redone 0.16.zip'
 
 ARC_TAVERNSREDONEDREAMPATCH='Taverns Redone D.R.E.A.M patch-43-1-0-1601949288.zip'
 
@@ -651,7 +651,7 @@ if [ "$BIRDSINDAGGERFALL" = "Y" ]; then
 fi
 
 if [ "$TAVERNSREDONE" = "Y" ]; then
-    unzip -j "$SOURCEDIR/$ARC_TAVERNSREDONE" 'Taverns Redone 0.15/Mods/taverns redone.dfmod' -d "$assets"/Mods/
+    unzip -j "$SOURCEDIR/$ARC_TAVERNSREDONE" 'Mods/taverns redone.dfmod' -d "$assets"/Mods/
     install_log "Mod: $ARC_TAVERNSREDONE"
     if [ "$DREAM" = "Y" ]; then
         unzip -j "$SOURCEDIR/$ARC_TAVERNSREDONEDREAMPATCH" 'Taverns Redone D.R.E.A.M patch/Mods/taverns redone d.r.e.a.m patch.dfmod' -d "$assets"/Mods/
