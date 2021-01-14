@@ -115,6 +115,9 @@ ARC_DAGGERFONT=FONT0003-SDF.zip
 # Handpainted Models https://forums.dfworkshop.net/viewtopic.php?f=27&t=583
 ARC_HANDPAINTEDMODELS='Handpainted models - Linux-9-2-10-1603062993.zip'
 
+# Unofficial Block, Location and Models Fixes https://forums.dfworkshop.net/viewtopic.php?f=14&t=4440
+ARC_BLOCKLOCATIONMODELFIXES='UBLaMF - Linux version-100-2021-01-09-1610164984.7z'
+
 # Fancy Indicators https://forums.dfworkshop.net/viewtopic.php?f=22&t=1671
 ARC_FANCYINDICATORS=FancyVitalIndicators.zip
 
@@ -522,6 +525,11 @@ fi
 if [ "$HANDPAINTEDMODELS" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_HANDPAINTEDMODELS" -d "$assets"/
     install_log "Mod: $ARC_HANDPAINTEDMODELS"
+fi
+
+if [ "$BLOCKLOCATIONMODELFIXES" = "Y" ]; then
+    7z x "$SOURCEDIR/$ARC_BLOCKLOCATIONMODELFIXES" -o"$assets"/Mods/
+    install_log "Mod: $ARC_BLOCKLOCATIONMODELFIXES"
 fi
 
 if [ "$FANCYINDICATORS" = "Y" ]; then
