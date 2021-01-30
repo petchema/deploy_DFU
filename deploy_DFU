@@ -257,7 +257,7 @@ ARC_LEVELUPADJUSTER='LevelUp Adjuster-68-1-2-0-1583343721.zip'
 ARC_INVENTORYFILTER='Inventory Filter-59-1-4-1604000496.7z'
 
 # Outfit Manager https://forums.dfworkshop.net/viewtopic.php?f=14&t=3248
-ARC_OUTFITMANAGER='Outfit Manager 2.0-62-2-0-1577263460.rar'
+ARC_OUTFITMANAGER='Outfit Manager Module-62-3-0-1589481648.rar'
 
 # Wilderness NPCs https://forums.dfworkshop.net/viewtopic.php?f=27&t=3267
 ARC_WILDERNESSNPCS='Wilderness NPCs-64-1-1-0-1577420306.zip'
@@ -813,7 +813,7 @@ if [ "$INVENTORYFILTER" = "Y" ]; then
 fi
 
 if [ "$OUTFITMANAGER" = "Y" ]; then
-    unrar x "$SOURCEDIR/$ARC_OUTFITMANAGER" "$assets"/Mods/
+    unrar x "$SOURCEDIR/$ARC_OUTFITMANAGER" "$assets"/
     install_log "Mod: $ARC_OUTFITMANAGER"
 fi
 
