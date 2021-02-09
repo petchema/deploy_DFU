@@ -4,8 +4,8 @@
 # Feel free to override here
 #SOURCEDIR="$HOME/Downloads/Daggerfall Unity"
 
-# Use STABLE, ALPHA or DEV version of Daggerfall Unity
-BASEGAME=ALPHA
+# Use DEV, ALPHA, BETA or STABLE version of Daggerfall Unity
+BASEGAME=BETA
 
 # Eye candy
 
