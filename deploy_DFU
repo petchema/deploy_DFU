@@ -88,6 +88,9 @@ ARC_TEXTURESXL=Textures.zip
 # TOPAZ AI Textures https://forums.dfworkshop.net/viewtopic.php?f=14&t=1642
 ARC_TOPAZTEXTURES=TexturesFreak2121.7z
 
+# Plain Vanilla Extract https://forums.dfworkshop.net/viewtopic.php?f=27&t=1956
+ARC_PVETEXTURES='PVE - Texture Pack-13-V0-03-1593811892.zip'
+
 # Trees of Daggerfall https://forums.dfworkshop.net/viewtopic.php?f=22&t=1826
 ARC_TREESOFDAGGERFALL='Trees Of Daggerfall 1.1.zip'
 
@@ -378,8 +381,8 @@ check_requirements () {
 }
 
 # Textures
-# Not TOPAZTEXTURES here since it's not a full overhaul
-check_conflicting INSTALL "Texture overhauls" DREAM REMASTER30 TEXTURESXL
+# Not TOPAZTEXTURES here since it's not a full overhaul and not packed
+check_conflicting INSTALL "Texture overhauls" DREAM REMASTER30 TEXTURESXL PVETEXTURES
 
 # Terrain Textures
 check_conflicting RUNTIME "Terrain textures" DREAM HIRESTERRAINTEXTURES
@@ -451,6 +454,11 @@ fi
 if [ "$TOPAZTEXTURES" = "Y" ]; then
     7z x "$SOURCEDIR/$ARC_TOPAZTEXTURES" -o"$assets"/ -aoa
     install_log "Mod: $ARC_TOPAZTEXTURES"
+fi
+
+if [ "$PVETEXTURES" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_PVETEXTURES" -d "$assets"/Mods
+    install_log "Mod: $ARC_PVETEXTURES"
 fi
 
 if [ "$TREESOFDAGGERFALL" = "Y" ]; then
