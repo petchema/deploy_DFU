@@ -103,6 +103,9 @@ ARC_HDWEAPONSFLAIL=CifRci_Flail.zip
 ARC_HDWEAPONSAXE=CifRci_Axe.zip
 ARC_HDWEAPONSDAGGER=CifRci_Dagger.zip
 
+# Readied Spellcasting Hands https://forums.dfworkshop.net/viewtopic.php?f=27&t=3811
+ARC_READIEDSPELLCASTINGHANDS=ReadiedSpellcastingHands-Linux-91-1-1-1605749619.zip
+
 # Hi-Res Terrain Textures https://forums.dfworkshop.net/viewtopic.php?f=14&t=3322
 ARC_HIRESTERRAINTEXTURES='High Resolution Terrain Textures - Linux (2K)-66-0-2-0-1580050058.7z'
 
@@ -506,6 +509,11 @@ if [ "$HDWEAPONSDAGGER" = "Y" ]; then
     mkdir -p "$assets"/Textures/CifRci
     unzip -o "$SOURCEDIR/$ARC_HDWEAPONSDAGGER" -d "$assets"/Textures/CifRci
     install_log "Mod: $ARC_HDWEAPONSDAGGER"
+fi
+
+if [ "$READIEDSPELLCASTINGHANDS" = "Y" ]; then
+    unzip -o "$SOURCEDIR/$ARC_READIEDSPELLCASTINGHANDS" -d "$assets"/Mods
+    install_log "Mod: $ARC_READIEDSPELLCASTINGHANDS"
 fi
 
 if [ "$HIRESTERRAINTEXTURES" = "Y" ]; then
