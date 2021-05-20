@@ -247,6 +247,9 @@ ARC_AIRSHIPS=DFAirships-15-0-2-2-1571690486.zip
 # Roleplay Realism https://forums.dfworkshop.net/viewtopic.php?f=27&t=2298
 ARC_ROLEPLAYREALISM=RoleplayRealism-1.1-16-1-1-1612865789.zip
 
+# Roleplay Realism Items https://forums.dfworkshop.net/viewtopic.php?f=27&t=3534
+ARC_ROLEPLAYREALISMITEMS=RoleplayRealism-Items-0.9.2-61-0-9-2-1620562224.zip
+
 # Loot Realism https://forums.dfworkshop.net/viewtopic.php?f=27&t=3207
 ARC_LOOTREALISM=LootRealism-0.2-61-v0-2-1582662611.zip
 
@@ -799,6 +802,11 @@ fi
 if [ "$ROLEPLAYREALISM" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_ROLEPLAYREALISM" -d "$assets"/Mods/
     install_log "Mod: $ARC_ROLEPLAYREALISM"
+fi
+
+if [ "$ROLEPLAYREALISMITEMS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_ROLEPLAYREALISMITEMS" -d "$assets"/
+    install_log "Mod: $ARC_ROLEPLAYREALISMITEMS"
 fi
 
 if [ "$LOOTREALISM" = "Y" ]; then
