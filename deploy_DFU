@@ -154,6 +154,9 @@ ARC_MOUNTAINSHILLS="Mountain And Hills 1.02.zip"
 # Interesting Terrains https://forums.dfworkshop.net/viewtopic.php?f=14&t=4062
 ARC_INTERESTINGTERRAINS='Interesting Terrains (Linux)-115-0-5-2-1605966367.zip'
 
+# Interesting Eroded Terrains
+ARC_INTERESTINGERODEDTERRAINS='Interesting Eroded Terrains 1.1-193-1-1-1620858192.7z'
+
 # Splat Terrain Texturing https://forums.dfworkshop.net/viewtopic.php?f=14&t=3322
 ARC_SPLATTERRAINTEXTURING='splat terrain texturing_beta3_linux.zip'
 
@@ -399,7 +402,7 @@ check_conflicting RUNTIME "Songs overhauls" DREAM MIDNIGHTPRINCESOUNDSCAPE DFREM
 check_conflicting RUNTIME "Sounds overhauls" SOUNDCLIPSMIXDOWN DREAM
 
 # Terrain generators
-check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS INTERESTINGTERRAINS
+check_conflicting RUNTIME "Terrain generators" DISTANTTERRAIN MOUNTAINSHILLS INTERESTINGTERRAINS INTERESTINGERODEDTERRAINS
 
 # Random Encounters
 check_conflicting INSTALL "Random encounters" WARMASHES WILDERNESSENCOUNTERS
@@ -601,6 +604,11 @@ fi
 if [ "$INTERESTINGTERRAINS" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_INTERESTINGTERRAINS" -d "$assets"/
     install_log "Mod: $ARC_INTERESTINGTERRAINS"
+fi
+
+if [ "$INTERESTINGERODEDTERRAINS" = "Y" ]; then
+    7z x "$SOURCEDIR/$ARC_INTERESTINGERODEDTERRAINS" -o"$assets"/Mods/
+    install_log "Mod: $ARC_INTERESTINGERODEDTERRAINS"
 fi
 
 if [ "$SPLATTERRAINTEXTURING" = "Y" ]; then
