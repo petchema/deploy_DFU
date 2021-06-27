@@ -327,6 +327,9 @@ ARC_DRAFTYSECRETDOORS=DraftySecretDoors-1.4.zip
 # Basic Roads https://forums.dfworkshop.net/viewtopic.php?f=27&t=4167
 ARC_BASICROADS=BasicRoads-134-1-0-1621628524.zip
 
+# Travel Options https://forums.dfworkshop.net/viewtopic.php?f=27&t=3963
+ARC_TRAVELOPTIONS=TravelOptions-1.4-122-1-4-1624104637.zip
+
 # -- preflight checks
 
 info "Installation preflight checks..."
@@ -949,6 +952,11 @@ fi
 if [ "$BASICROADS" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_BASICROADS" -d "$assets"/
     install_log "Mod: $ARC_BASICROADS"
+fi
+
+if [ "$TRAVELOPTIONS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_TRAVELOPTIONS" -d "$assets"/
+    install_log "Mod: $ARC_TRAVELOPTIONS"
 fi
 
 if [ "$USE_HACKS" = "Y" ]; then
