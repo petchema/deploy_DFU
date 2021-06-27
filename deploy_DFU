@@ -259,8 +259,8 @@ ARC_ROLEPLAYREALISMITEMS=RoleplayRealism-Items-0.9.2-61-0-9-2-1620562224.zip
 # Loot Realism https://forums.dfworkshop.net/viewtopic.php?f=27&t=3207
 ARC_LOOTREALISM=LootRealism-0.2-61-v0-2-1582662611.zip
 
-# Climates&Cloaks https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
-ARC_CLIMATECLOAKS='Climates and Cloaks-49-1-2-8-1584397546.zip'
+# Climates&Calories https://forums.dfworkshop.net/viewtopic.php?f=27&t=3073
+ARC_CLIMATESCALORIES='Climates and Calories-49-1-5-8-1623097148.zip'
 
 # Filling Food https://forums.dfworkshop.net/viewtopic.php?f=27&t=3327
 ARC_FILLINGFOOD='Filling Food-65-1-1-1579217296.zip'
@@ -439,7 +439,10 @@ check_requirements "RODGAVAUDON_MOUNTAINLAYER" "LOCATIONLOADER_RODGAVAUDON"
 
 check_requirements "ROCKSOFDAGGERFALL_LOCATIONSPACK" "ROCKSOFDAGGERFALL"
 
-check_conflicting INSTALL "Travel enhancements" "TEDIOUSTRAVEL" "TRAVELOPTIONS"
+check_conflicting RUNTIME "Travel enhancements" "TEDIOUSTRAVEL" "TRAVELOPTIONS"
+
+check_requirements "CLIMATESCALORIES" "ROLEPLAYREALISM" "ROLEPLAYREALISMITEMS" "TRAVELOPTIONS"
+check_conflicting INSTALL "Filling Food merged into Climates&Calories" "CLIMATESCALORIES" "FILLINGFOOD"
 
 # -- Let's go
 
@@ -847,9 +850,9 @@ if [ "$LOOTREALISM" = "Y" ]; then
    install_log "Mod: $ARC_LOOTREALISM"
 fi
 
-if [ "$CLIMATECLOAKS" = "Y" ]; then
-    unzip "$SOURCEDIR/$ARC_CLIMATECLOAKS" -d "$assets"/
-    install_log "Mod: $ARC_CLIMATECLOAKS"
+if [ "$CLIMATESCALORIES" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_CLIMATESCALORIES" -d "$assets"/
+    install_log "Mod: $ARC_CLIMATESCALORIES"
 fi
 
 if [ "$FILLINGFOOD" = "Y" ]; then
