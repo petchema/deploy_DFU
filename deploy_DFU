@@ -295,6 +295,9 @@ ARC_QUESTPACK1=Quest_Pack_1.zip
 # theJF Quest Pack https://forums.dfworkshop.net/viewtopic.php?f=14&t=2895
 ARC_THEJFQUESTPACK=daggerfall-quests-master.zip
 
+# Jay'H Random Little Quests https://forums.dfworkshop.net/viewtopic.php?f=27&t=4879
+ARC_JAYHRANDOMLITTLEQUESTS="Jay_H's Random Little Quests-204-2021-06-23-1624525009.zip"
+
 # Archaeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
 ARC_ARCHAEOLOGISTSGUILD=ArchaeologistsGuild-1.5-14-1-5-1613330034.zip
 
@@ -899,6 +902,11 @@ fi
 if [ "$THEJFQUESTPACK" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_THEJFQUESTPACK" -d "$assets"/QuestPacks/JF/
     install_log "Mod: $ARC_THEJFQUESTPACK"
+fi
+
+if [ "$JAYHRANDOMLITTLEQUESTS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_JAYHRANDOMLITTLEQUESTS" -d "$assets"/
+    install_log "Mod: $ARC_JAYHRANDOMLITTLEQUESTS"
 fi
 
 if [ "$ARCHAEOLOGISTSGUILD" = "Y" ]; then
