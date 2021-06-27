@@ -298,6 +298,9 @@ ARC_THEJFQUESTPACK=daggerfall-quests-master.zip
 # Archaeologists guild https://forums.dfworkshop.net/viewtopic.php?f=27&t=888
 ARC_ARCHAEOLOGISTSGUILD=ArchaeologistsGuild-1.5-14-1-5-1613330034.zip
 
+# Quest Offer Locations https://forums.dfworkshop.net/viewtopic.php?f=27&t=4670
+ARC_QUESTOFFERLOCATIONS='Quest Offer Locations (Standalone Windows) 0.2.0-201-0-2-0-1623332819.rar'
+
 # Daggerfall Skyshards https://forums.dfworkshop.net/viewtopic.php?f=27&t=2746
 ARC_SKYSHARDS='DaggerfallSkyShards Linux-24-1-01-1600280266.zip'
 
@@ -901,6 +904,11 @@ fi
 if [ "$ARCHAEOLOGISTSGUILD" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_ARCHAEOLOGISTSGUILD" -d "$assets"/
     install_log "Mod: $ARC_ARCHAEOLOGISTSGUILD"
+fi
+
+if [ "$QUESTOFFERLOCATIONS" = "Y" ]; then
+    unrar e "$SOURCEDIR/$ARC_QUESTOFFERLOCATIONS" 'StandaloneWindows/quest offer locations.dfmod' "$assets"/Mods/
+    install_log "Mod: $ARC_QUESTOFFERLOCATIONS"
 fi
 
 if [ "$SKYSHARDS" = "Y" ]; then
