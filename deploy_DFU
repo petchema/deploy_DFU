@@ -136,6 +136,9 @@ ARC_COMPASSTEXTURES=CompassTextures.7z
 # NPC Health Indicators https://forums.dfworkshop.net/viewtopic.php?f=27&t=3263
 ARC_NPCHEALTHINDICATORS='NPC Health Indicators-63-1-1-1-1577569464.zip'
 
+# Delver Compass https://forums.dfworkshop.net/viewtopic.php?f=27&t=4727
+ARC_DELVERCOMPASS=DelverCompass-0.81-Linux64-184-0-81-1623087150.zip
+
 # Daggerfall World Map https://forums.dfworkshop.net/viewtopic.php?f=22&t=1804
 ARC_DAGGERFALLWORLDMAP="Daggerfall World Map.zip"
 
@@ -582,6 +585,11 @@ fi
 if [ "$NPCHEALTHINDICATORS" = "Y" ]; then
     unzip -j "$SOURCEDIR/$ARC_NPCHEALTHINDICATORS" -d "$assets"/Mods/ NPCHealthIndicators/StandaloneLinux/npchealthindicators.dfmod
     install_log "Mod: $ARC_NPCHEALTHINDICATORS"
+fi
+
+if [ "$DELVERCOMPASS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_DELVERCOMPASS" -d "$assets"/ 'Mods/delver-compass.dfmod'
+    install_log "Mod: $ARC_DELVERCOMPASS"
 fi
 
 if [ "$DAGGERFALLWORLDMAP" = "Y" ]; then
