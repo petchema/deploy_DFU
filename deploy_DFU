@@ -274,6 +274,9 @@ ARC_INVENTORYFILTER='Inventory Filter-59-1-4-1604000496.7z'
 # Outfit Manager https://forums.dfworkshop.net/viewtopic.php?f=14&t=3248
 ARC_OUTFITMANAGER='Outfit Manager-62-4-1-1613372325.rar'
 
+# HotKey Bar https://forums.dfworkshop.net/viewtopic.php?f=27&t=4680
+ARC_HOTKEYBAR='Hotkey Bar (Windows) 0.4.0-202-0-4-0-1624125546.rar'
+
 # Wilderness NPCs https://forums.dfworkshop.net/viewtopic.php?f=27&t=3267
 ARC_WILDERNESSNPCS='Wilderness NPCs-64-1-1-0-1577420306.zip'
 
@@ -850,6 +853,11 @@ fi
 if [ "$OUTFITMANAGER" = "Y" ]; then
     unrar x "$SOURCEDIR/$ARC_OUTFITMANAGER" "$assets"/
     install_log "Mod: $ARC_OUTFITMANAGER"
+fi
+
+if [ "$HOTKEYBAR" = "Y" ]; then
+    unrar e "$SOURCEDIR/$ARC_HOTKEYBAR" 'StandaloneWindows/hotkey bar.dfmod' "$assets"/Mods/
+    install_log "Mod: $ARC_HOTKEYBAR"
 fi
 
 if [ "$WILDERNESSNPCS" = "Y" ]; then
