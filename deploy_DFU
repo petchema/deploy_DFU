@@ -307,6 +307,9 @@ ARC_QUESTOFFERLOCATIONS='Quest Offer Locations (Standalone Windows) 0.2.0-201-0-
 # Arena-Style Flavor Text https://forums.dfworkshop.net/viewtopic.php?f=27&t=4838
 ARC_ARENASTYLEFLAVORTEXT='Arena-Style Flavor Text-203-1-01-1623414358.zip'
 
+# Town Greetings of the Iliac Bay https://forums.dfworkshop.net/viewtopic.php?f=27&t=4808
+ARC_TOWNGREETINGS='Town Greetings of the Iliac Bay-194-1-2-1623068931.zip'
+
 # Daggerfall Skyshards https://forums.dfworkshop.net/viewtopic.php?f=27&t=2746
 ARC_SKYSHARDS='DaggerfallSkyShards Linux-24-1-01-1600280266.zip'
 
@@ -928,6 +931,11 @@ fi
 if [ "$ARENASTYLEFLAVORTEXT" = "Y" ]; then
     unzip "$SOURCEDIR/$ARC_ARENASTYLEFLAVORTEXT" -d "$assets"/
     install_log "Mod: $ARC_ARENASTYLEFLAVORTEXT"
+fi
+
+if [ "$TOWNGREETINGS" = "Y" ]; then
+    unzip "$SOURCEDIR/$ARC_TOWNGREETINGS" -d "$assets"/
+    install_log "Mod: $ARC_TOWNGREETINGS"
 fi
 
 if [ "$SKYSHARDS" = "Y" ]; then
