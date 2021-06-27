@@ -427,6 +427,8 @@ check_requirements "RODGAVAUDON_MOUNTAINLAYER" "LOCATIONLOADER_RODGAVAUDON"
 
 check_requirements "ROCKSOFDAGGERFALL_LOCATIONSPACK" "ROCKSOFDAGGERFALL"
 
+check_conflicting INSTALL "Travel enhancements" "TEDIOUSTRAVEL" "TRAVELOPTIONS"
+
 # -- Let's go
 
 info "Start installation under \`$TARGETDIR'"
