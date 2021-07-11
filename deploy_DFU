@@ -337,7 +337,7 @@ ARC_STARTSAVER='Start Saver-71-1-1-1585042645.zip'
 ARC_AUTOSAVE=df-unity.Autosave-Autosave-v0.9.0b.zip
 
 # Drafty Secret Doors https://forums.dfworkshop.net/viewtopic.php?f=14&t=2020
-ARC_DRAFTYSECRETDOORS=DraftySecretDoors-1.4.zip
+ARC_DRAFTYSECRETDOORS='Drafty Secret Doors-211-1-0-1625945823.zip'
 
 # Basic Roads https://forums.dfworkshop.net/viewtopic.php?f=27&t=4167
 ARC_BASICROADS=BasicRoads-134-1-0-1621628524.zip
@@ -990,7 +990,7 @@ if [ "$AUTOSAVE" = "Y" ]; then
 fi
 
 if [ "$DRAFTYSECRETDOORS" = "Y" ]; then
-    unzip -j "$SOURCEDIR//$ARC_DRAFTYSECRETDOORS" -d "$assets"/Mods/ StandaloneLinux/draftysecretdoors.dfmod
+    unzip "$SOURCEDIR//$ARC_DRAFTYSECRETDOORS" -d "$assets"/
     install_log "Mod: $ARC_DRAFTYSECRETDOORS"
 fi
 
