@@ -61,7 +61,7 @@ case "$BASEGAME" in
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_universal-148.zip
         ;;
     BETA)
-        ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_x64-208.zip
+        ARC_BASEGAME=linux_64bit-v0.11.5-beta.zip
         ;;
     ALPHA)
         ARC_BASEGAME=interkarma-daggerfall-unity-daggerfallunity_linux_x64-202.zip
